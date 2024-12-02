@@ -1,0 +1,52 @@
+﻿@model RapChieuPhim.Models.Dat_cho
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Sửa</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Dat_cho</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ghe_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ghe_id, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập ghe_id" } })
+                @Html.ValidationMessageFor(model => model.ghe_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.suat_chieu_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.suat_chieu_id, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập suat_chieu_id" } })
+                @Html.ValidationMessageFor(model => model.suat_chieu_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.da_dat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.da_dat, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập trạng thái đã đặt" } })
+                @Html.ValidationMessageFor(model => model.da_dat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở về", "Index", null, new { @class = "btn btn-secondary" })
+</div>

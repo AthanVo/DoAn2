@@ -1,0 +1,52 @@
+﻿@model IEnumerable<RapChieuPhim.Models.Ghe_ngoi>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách ghế ngồi</h2>
+
+<p>
+    @Html.ActionLink("Thêm số ghế mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.man_hinh_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.so_ghe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.loai_ghe_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rap_id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.man_hinh_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.so_ghe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.loai_ghe_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rap_id)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.ghe_id }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.ghe_id }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.ghe_id })
+        </td>
+    </tr>
+}
+
+</table>

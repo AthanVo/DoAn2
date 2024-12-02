@@ -1,0 +1,473 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/trangchu.css" rel="stylesheet" />
+    <link href="~/Content/product.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Trang Chủ</title>
+</head>
+<style>
+    /* Cấu trúc chung */
+    .footer {
+        background-color: #333;
+        color: #fff;
+        padding: 40px 0;
+    }
+
+    .footer .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .footer .footer-col {
+        flex: 1 1 calc(25% - 20px); /* Chia 4 cột */
+        margin: 10px;
+        text-align: left;
+    }
+
+    .footer .footer-col h4 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        position: relative;
+        color: #ff5722;
+    }
+
+    .footer .footer-col h4:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 50px;
+        height: 2px;
+        background-color: #ff5722;
+    }
+
+    .footer .footer-col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer .footer-col ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer .footer-col ul li a {
+        color: #ddd;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer .footer-col ul li a:hover {
+        color: #ff5722;
+    }
+
+    /* Các liên kết mạng xã hội */
+    .footer .social-links {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 20px;
+    }
+
+    .footer .social-links a {
+        color: #ddd;
+        margin-right: 15px;
+        font-size: 20px;
+        transition: color 0.3s ease;
+    }
+
+    .footer .social-links a:hover {
+        color: #ff5722;
+    }
+
+    /* Logo và dòng bản quyền */
+    #footer {
+        background-color: #222;
+        text-align: center;
+        color: #fff;
+        padding: 20px;
+        border-top: 1px solid #444;
+    }
+
+    #footer img {
+        max-width: 100px;
+        margin-bottom: 10px;
+    }
+
+    #footer span {
+        display: block;
+        font-size: 14px;
+        color: #aaa;
+        margin-top: 5px;
+    }
+
+    /* Responsive */
+    media (max-width: 768px) {
+        .footer .footer-col {
+            flex: 1 1 100%; /* Mỗi cột chiếm 100% chiều rộng */
+            text-align: center;
+        }
+
+        .footer .social-links {
+            justify-content: center;
+        }
+    }
+
+    /* Styling for login/logout section */
+#login-icon {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#login-icon a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+#login-icon a:hover {
+    color: #fff;
+    background-color: #ff5722;
+    box-shadow: 0px 4px 8px rgba(255, 87, 34, 0.2);
+}
+
+/* Dropdown menu styling */
+#login-icon div {
+    position: relative;
+}
+
+#login-icon .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 180px;
+    z-index: 10;
+    animation: fadeIn 0.3s ease;
+}
+
+#login-icon:hover .dropdown {
+    display: block;
+}
+
+#login-icon .dropdown a {
+    display: block;
+    padding: 12px 15px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+#login-icon .dropdown a:hover {
+    background-color: #ff5722;
+    color: #fff;
+}
+
+#login-icon .dropdown hr {
+    margin: 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+/* Avatar-style icon for logged-in state */
+#login-icon span {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+#login-icon a span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Admin-specific styling */
+#login-icon a.admin {
+    color: #4CAF50;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Dropdown Animation */
+keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive for small screens */
+media (max-width: 768px) {
+    #login-icon {
+        text-align: center;
+    }
+    #login-icon .dropdown {
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+}
+</style>
+<body>
+    <header>
+        <div class="logo">
+            <a href="@Url.Action("Index", "Home")">
+                <img src="@Url.Content("~/Content/image/cinema_background_blue.jpg")" alt="Logo" style="max-width: 35%;" />
+            </a>
+        </div>
+        <a href="@Url.Action("Index", "Home")">
+            <img style="max-width:150px; height: auto;" src="@Url.Content("~/Content/image/ticket.jpg")" alt="Vé" />
+        </a>
+        <div class="menu">
+            <li><a href="#">Phim</a></li>
+            <li>
+                <a href="#">Góc Điện Ảnh</a>
+                <ul class="sub-menu">
+                    <li><a href="#">Thể loại phim</a></li>
+                    <br>
+                    <li><a href="#">Diễn viên</a></li>
+                    <br>
+                    <li>
+                        <a href="#">Đạo diễn</a>
+                        <ul></ul>
+                    </li>
+                    <br>
+                    <li>
+                        <a href="#">Bình luận phim</a>
+                        <ul></ul>
+                    </li>
+                    <br>
+                    <li><a href="#">Blog điện ảnh</a></li>
+                    <br>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Sự Kiện</a>
+                <ul class="sub-menu">
+                    <li><a href="@Url.Action("Khuyenmai", "Promotion")">Ưu đãi</a></li>
+                    <br>
+                    <li><a href="#">Phim hay tháng</a></li>
+                    <br>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Rạp/Giá Vé</a>
+                <ul class="sub-menu">
+                    <li><a href="#">Galaxy Nguyễn Du</a></li>
+                    <br>
+                    <li><a href="#">Galaxy Long Xuyên</a></li>
+                    <br>
+                    <li><a href="#">Galaxy Sala</a></li>
+                    <br>
+                    <li><a href="#">Galaxy Tân Bình</a></li>
+                    <br>
+                    <li><a href="#">Galaxy Bến Tre</a></li>
+                    <br>
+                </ul>
+            </li>
+        </div>
+        <div class="others">
+            <li id="search-icon" style="margin-right:5px">
+                <input id="searchInput" onkeyup="checkEnter(event)" placeholder="Tìm kiếm">
+                <i class="fas fa-search"></i>
+            </li>
+        </div>
+
+
+
+        <li id="login-icon">
+            @if (Session["Nguoi_dung_id"] != null)
+            {
+                <div>
+                    @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+                    {
+                        <a href="@Url.Action("Index", "Trangchu", new { area = "Admin" })" class="admin">
+                            <i class="fa-solid fa-user-shield"></i>
+                            <span>Xin chào! Admin @Session["ho_ten"]</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Thongtinnguoidung", "Login")">
+                            <i class="fa-solid fa-user"></i>
+                            <span>Xin chào! @Session["ho_ten"]</span>
+                        </a>
+                    }
+
+                    <a href="@Url.Action("Logout", "Login")" class="logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Đăng xuất</span>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <a href="@Url.Action("Dangnhap", "Login")" class="login">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Đăng nhập</span>
+                </a>
+            }
+        </li>
+
+    </header>
+
+    @RenderBody()
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h4>GIỚI THIỆU</h4>
+                <ul>
+                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="#">Thỏa thuận sử dụng</a></li>
+                    <li><a href="#">Quy chế hoạt động</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>GÓC ĐIỆN ẢNH</h4>
+                <ul>
+                    <li><a href="#">Blog điện ảnh</a></li>
+                    <li><a href="#">Phim hay tháng</a></li>
+                    <li><a href="#">Phim IMAX</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>HỖ TRỢ</h4>
+                <ul>
+                    <li><a href="#">Góp ý</a></li>
+                    <li><a href="#">Sale & Services</a></li>
+                    <li><a href="#">Rạp / Giá Vé</a></li>
+                    <li><a href="#">Tuyển dụng</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>THEO DÕI CHÚNG TÔI TẠI</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="footer">
+        <img src="@Url.Content("~/Content/image/cinema_background_blue.jpg")" alt="Footer Logo">
+        <div class="footer-names">
+            <span>VÕ ĐỨC THỊNH</span>
+            <span>BÙI MINH THƯ</span>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        // Thực hiện tìm kiếm
+        function checkEnter(event) {
+            if (event.keyCode === 13) { // Enter key
+                performSearch();
+            }
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            if (searchTerm) {
+                window.location.href = `/Home/Search?query=${encodeURIComponent(searchTerm)}`;
+            }
+        }
+
+
+        function performSearch() {
+            var searchTerm = $('#searchInput').val();
+            var pageNumber = $('.pagination-container .active').text();
+
+            if (searchTerm.trim() !== "") {
+                // Thay đổi đường dẫn trực tiếp đến trang tìm kiếm
+                window.location.href = '/Home/Search?query=' + encodeURIComponent(searchTerm) + '&page=' + pageNumber;
+            }
+        }
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const token = localStorage.getItem('AuthToken');
+            if (token) {
+                console.log('Token:', token);
+            } else {
+                console.log('Không có token trong Local Storage');
+            }
+        });
+        const token = localStorage.getItem('AuthToken');
+        fetch('/SomeApiEndpoint', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+
+
+
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Ngăn form gửi đi
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            fetch('/Login/Dangnhap', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tendn: username, matkhau: password })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Lưu token vào Local Storage
+                        localStorage.setItem('AuthToken', data.token);
+
+                        // Hiển thị thông báo thành công và chuyển hướng
+                        alert('Đăng nhập thành công');
+                        window.location.href = '/Home/Index';
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</body>
+</html>

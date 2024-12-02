@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Chitietkhuyenmai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="padding-top: 100px;">
+    <h2>@Model.ten_khuyen_mai</h2>
+</div>
+<div>
+    <p><b>@Model.mo_ta </b></p>
+    <p>Đến <b>Cinema</b></p>
+    <p>Thời gian: từ ngày @Model.ngay_bat_dau.ToString("dd/MM/yyyy") đến ngày @Model.ngay_ket_thuc.ToString("dd/MM/yyyy").</p>
+    <p>Giá bán: từ 150.000 VND/ tùy loại ghế (khuyến mãi: @Model.phan_tram_giam%/1 sản phẩm).</p>
+    <p>Địa điểm: Các cụm rạp <b>Tutien cinema</b> tại TP Cần Thơ.</p>
+    <p>Mã giảm giá cho bạn: @Model.ma_giam_gia</p>
+    <!-- Hiển thị ảnh từ đường dẫn trong cơ sở dữ liệu -->
+    <img src="@Url.Content(Model.anh)" alt="@Model.ten_khuyen_mai" style="max-width: 100%; height: auto; max-height: 400px;">
+</div>

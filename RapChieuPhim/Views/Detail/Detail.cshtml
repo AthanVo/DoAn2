@@ -1,0 +1,374 @@
+﻿@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="~/Content/assets/css/datve.css" rel="stylesheet" />
+    <link href="~/Content/trangchu.css" rel="stylesheet" />
+}
+
+<style>
+    .btn-ticket {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #ff5733;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-ticket:hover {
+            background-color: #e04b2a;
+        }
+
+        .btn-ticket:active {
+            background-color: #c74421;
+        }
+
+        .btn-ticket:focus {
+            outline: none;
+            box-shadow: 0 0 5px #ff5733;
+        }
+    /* Tổng quan về banner */
+    .banner {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: #000;
+    }
+
+    /* Hiệu ứng bên trái và bên phải */
+    .leftEffect,
+    .rightEffect {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        width: 100px;
+    }
+
+    .leftEffect {
+        left: 0;
+    }
+
+    .rightEffect {
+        right: 0;
+    }
+
+    /* Trailer container */
+    .trailer-container {
+        position: relative;
+        z-index: 2;
+        width: 90%;
+        max-width: 1200px;
+        text-align: center;
+    }
+
+    #backgroundImg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        top: 0;
+        left: 0;
+    }
+
+    #video {
+        width: 60%;
+        max-height: 50%;
+        display: none;
+        z-index: 3;
+        position: relative;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Khi video phát ở chế độ toàn màn hình */
+    #video.fullscreen {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.5);
+        width: 60%;
+        height: auto;
+        z-index: 1000;
+        background-color: #000;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+        border-radius: 10px;
+    }
+
+    /* Nút phát video */
+    .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 4;
+        width: 80px;
+        height: 80px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .play-icon:hover {
+        background-color: rgba(255, 87, 51, 0.9);
+        transform: scale(1.1);
+    }
+
+    .play-icon img {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Ẩn cuộn trang khi video phóng to */
+    body.no-scroll {
+        overflow: hidden;
+    }
+
+    /* Responsive */
+    media (max-width: 768px) {
+        .banner {
+            height: 300px;
+        }
+
+        .play-icon {
+            width: 60px;
+            height: 60px;
+        }
+
+        .play-icon img {
+            width: 30px;
+            height: 30px;
+        }
+
+        #video.fullscreen {
+            width: 95%;
+        }
+    }
+
+    media (max-width: 480px) {
+        .banner {
+            height: 250px;
+        }
+
+        .play-icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        .play-icon img {
+            width: 25px;
+            height: 25px;
+        }
+
+        #video.fullscreen {
+            width: 100%;
+        }
+    }
+    #closeVideoButton {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1100;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        #closeVideoButton:hover {
+            background-color: rgba(255, 87, 51, 0.9);
+        }
+
+    #backgroundImg {
+        display: block !important; /* Luôn đảm bảo ảnh hiển thị đúng */
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+
+</style>
+
+
+<main>
+
+    <div class="banner">
+        <!-- Hiệu ứng bên trái -->
+        <div class="leftEffect">
+            <img src="~/Content/assets/images/leftBulr.png" alt="">
+        </div>
+
+        <!-- Container chính của trailer -->
+        <div class="trailer-container">
+            <!-- Nút Play -->
+            <div class="play-icon" onclick="playVideo()">
+                <img src="~/Content/assets/images/playIcon.png" alt="Play">
+            </div>
+
+            <!-- Hình nền trailer -->
+            <img src="@Url.Content(!string.IsNullOrEmpty(Model.anh_video) ? Model.anh_video : "~/Content/images/default_background.jpg")"
+                 alt="@Model.ten_phim" id="backgroundImg">
+
+            <!-- Video -->
+            <video id="video" controls style="display: none;">
+                <source src="@Url.Content(!string.IsNullOrEmpty(Model.video) ? Model.video : "~/Content/videos/default_video.mp4")"
+                        type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ phát video.
+            </video>
+
+        </div>
+
+        <!-- Hiệu ứng bên phải -->
+        <div class="rightEffect">
+            <img src="~/Content/assets/images/rightBlur.png" alt="">
+        </div>
+        <!-- Nút Tắt Video -->
+        <div id="closeVideoButton" style="display: none;" onclick="playVideo()">
+            ✖
+        </div>
+
+    </div>
+
+
+
+    <div class="content">
+        <div class="current-film-info">
+            <div class="film">
+                <img src="@Url.Content(Model.anh)" alt="Model.ten_phim">
+
+                <div class="filmDescription">
+                    <h2 class="activeFilmName">
+                        @Model.ten_phim
+                    </h2>
+                    <div class="filmTime">
+                        <p class="time"><i class="fa-regular fa-clock"></i> @Model.thoi_luong phút</p>
+                        <p class="date"><i class="fa-regular fa-calendar"></i> @Model.ngay_khoi_chieu.ToString("dd/MM/yyyy")</p>
+
+                    </div>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <p>@Model.diem_danh_gia</p>
+                        <span>(@Model.luot_vote)</span>
+                    </div>
+                    <div class="country">Quốc gia: <span>@Model.Quoc_gia.ten_quoc_gia</span></div>
+                    <div class="producer">Nhà sản xuất: <span>@Model.nha_san_xuat</span></div>
+                    <div class="category">
+                        Thể loại: <span class="tag">@Model.the_loai</span>
+                    </div>
+                    <div class="director">Đạo diễn: <span class="tag">@Model.dao_dien</span></div>
+                    <div class="actors">Diễn viên: <span class="tag">@Model.Dien_vien.ten_dien_vien</span></div>
+                    <button onclick="checkLogin(@Model.phim_id)" class="btn-ticket" data-film-id="@Model.phim_id">Đặt Vé</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detailfilm">
+        <h3>
+            Nội Dung Phim
+        </h3>
+        <p style="font-size: 25px;">@Model.mo_ta</p>
+    </div>
+    <div class="relative-film">
+        <div class="title">
+            <h3>
+                Phim đang chiếu
+            </h3>
+
+            <div class="relativefilm">
+                <div class="film">
+                    <img src="~/Content/assets/images/fim1.jpg" />
+                </div>
+                <div class="film">
+                    <img src="~/Content/assets/images/fim2.jpg" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+    function playVideo() {
+        const backgroundImg = document.getElementById("backgroundImg");
+        const video = document.getElementById("video");
+        const playIcon = document.querySelector(".play-icon");
+        const closeButton = document.getElementById("closeVideoButton");
+        const body = document.body;
+
+        // Ẩn ảnh nền và nút Play
+        backgroundImg.style.display = "none"; // Ẩn ảnh nền chỉ khi phát video
+        playIcon.style.display = "none";
+
+        // Hiển thị video và nút tắt, thêm hiệu ứng phóng to
+        video.style.display = "block";
+        video.classList.add("fullscreen");
+        closeButton.style.display = "block";
+        video.play();
+
+        // Chặn cuộn trang khi video phóng to
+        body.classList.add("no-scroll");
+
+        // Hàm đặt lại trạng thái video
+        function resetVideo() {
+            video.classList.remove("fullscreen");
+            playIcon.style.display = "flex"; // Hiển thị lại nút Play
+            backgroundImg.style.display = "block"; // Hiển thị lại ảnh nền
+            video.style.display = "none"; // Ẩn video
+            closeButton.style.display = "none"; // Ẩn nút Tắt
+            body.classList.remove("no-scroll"); // Khôi phục cuộn trang
+            video.pause(); // Dừng video
+            video.currentTime = 0; // Đặt lại video về đầu
+        }
+
+        // Gắn sự kiện khi kết thúc video hoặc nhấn nút Tắt
+        video.addEventListener("ended", resetVideo);
+        closeButton.addEventListener("click", resetVideo);
+    }
+
+
+    // Kiểm tra trạng thái đăng nhập
+    function checkLogin(filmId) {
+        $.ajax({
+            url: '/Login/CheckLoginStatus',
+            type: 'GET',
+            success: function (response) {
+                if (response.loggedIn) {
+                    window.location.href = `/Booking/Datve?filmId=${filmId}`;
+                } else {
+                    alert("Bạn cần đăng nhập để đặt vé.");
+                    window.location.href = '/Login/Dangnhap';
+                }
+            },
+            error: function () {
+                alert("Có lỗi xảy ra. Vui lòng thử lại.");
+            }
+        });
+    }
+</script>

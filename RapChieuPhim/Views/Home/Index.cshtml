@@ -1,0 +1,390 @@
+﻿@model PagedList.IPagedList<RapChieuPhim.Models.Phim>
+@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    <style >
+    /* Cấu trúc chung */
+    .footer {
+        background-color: #333;
+        color: #fff;
+        padding: 40px 0;
+    }
+
+    .footer .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .footer .footer-col {
+        flex: 1 1 calc(25% - 20px); /* Chia 4 cột */
+        margin: 10px;
+        text-align: left;
+    }
+
+        .footer .footer-col h4 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            color: #ff5722;
+        }
+
+            .footer .footer-col h4:after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -10px;
+                width: 50px;
+                height: 2px;
+                background-color: #ff5722;
+            }
+
+        .footer .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .footer .footer-col ul li {
+                margin-bottom: 10px;
+            }
+
+                .footer .footer-col ul li a {
+                    color: #ddd;
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                }
+
+                    .footer .footer-col ul li a:hover {
+                        color: #ff5722;
+                    }
+
+    /* Các liên kết mạng xã hội */
+    .footer .social-links {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 20px;
+    }
+
+        .footer .social-links a {
+            color: #ddd;
+            margin-right: 15px;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+            .footer .social-links a:hover {
+                color: #ff5722;
+            }
+
+    /* Logo và dòng bản quyền */
+    #footer {
+        background-color: #222;
+        text-align: center;
+        color: #fff;
+        padding: 20px;
+        border-top: 1px solid #444;
+    }
+
+        #footer img {
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+
+        #footer span {
+            display: block;
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+    .footer .social-links {
+        justify-content: center;
+    }
+
+    /* Container bông tuyết */
+#snowflakeContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Không cho chuột tương tác */
+    z-index: 9999; /* Luôn nằm trên các nội dung khác */
+}
+
+/* CSS cho từng bông tuyết */
+    .snowflake {
+        position: absolute;
+        color: rgba(100, 100, 100, 0.8); /* Màu bông tuyết xám nhạt */
+        font-size: 1rem; /* Kích thước bông tuyết */
+        animation: fall 10s linear infinite, sway 3s ease-in-out infinite;
+    }
+
+/* Hiệu ứng rơi xuống */
+@@keyframes fall {
+    0% {
+        transform: translateY(-10vh); /* Bắt đầu từ trên màn hình */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh); /* Kết thúc ở dưới màn hình */
+        opacity: 0.5; /* Mờ dần khi rơi */
+    }
+}
+    /* Overlay mờ nền */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6); /* Màu nền mờ */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        visibility: hidden; /* Ẩn popup mặc định */
+        opacity: 0;
+        transition: visibility 0s, opacity 0.3s;
+    }
+
+    /* Nội dung chính của popup */
+    .popup-content {
+        background: #fff; /* Nền trắng */
+        width: 400px;
+        max-width: 90%;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+        /* Tiêu đề */
+        .popup-content h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #e53935; /* Màu đỏ tiêu đề */
+        }
+
+        /* Nút đóng */
+        .popup-content button {
+            background: #e53935; /* Màu đỏ */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+            .popup-content button:hover {
+                background: #b71c1c; /* Đỏ đậm khi hover */
+            }
+
+    /* Hiển thị popup */
+    .popup-overlay.show {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    /* CSS để làm nổi bật */
+    .highlighted-link {
+        text-align: center; /* Canh giữa */
+        background-color: #f9e79f; /* Nền màu vàng nhạt */
+        padding: 10px 20px; /* Tạo khoảng cách trong */
+        border-radius: 8px; /* Bo tròn góc */
+        display: inline-block;
+        font-size: 18px; /* Tăng kích thước chữ */
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+        .highlighted-link a {
+            color: #e74c3c; /* Màu chữ đỏ đậm */
+            text-decoration: none; /* Xóa gạch chân */
+        }
+
+            .highlighted-link a:hover {
+                color: #c0392b; /* Màu đỏ đậm hơn khi hover */
+            }
+
+        .highlighted-link:hover {
+            transform: scale(1.1); /* Phóng to nhẹ khi hover */
+            background-color: #f7dc6f; /* Màu nền đậm hơn khi hover */
+        }
+
+
+
+</style>
+<div id="popup" class="popup-overlay">
+    <div class="popup-content">
+        <h2>WELCOME</h2>
+        <p>Chúng tôi rất vui khi bạn chọn rạp chúng tôi để xem phim</p>
+        <p>Chúc bạn có một trải nghiệm thú vị!</p>
+        <p class="highlighted-link">
+            <a href="/Promotion/Khuyenmai">Xem các thông tin khuyến mãi</a>
+        </p>
+
+        <button id="close-popup">Đóng</button>
+    </div>
+</div>
+<div id="snowflakeContainer"></div>
+<main>
+    <div class="main-container">
+        <section class="main-slider">
+            <!-- slide -->
+            <div class="slider">
+                <div class="list">
+                    <div class="item">
+                        <img src="@Url.Content("~/Content/image/cai-gia-cua-hanh-phuc-2_1712733220607.jpg")" alt="Cai Gia Cua Hanh Phuc 2" />
+                    </div>
+                    <div class="item">
+                        <img src="@Url.Content("~/Content/image/ghostbusters-frozen-empire-2048_1712719876429.jpg")" alt="Ghostbusters Frozen Empire" />
+                    </div>
+                    <div class="item">
+                        <img src="@Url.Content("~/Content/image/QuyenloiThanhVien.jpg")" />
+                    </div>
+                    <div class="item">
+                        <img src="@Url.Content("~/Content/image/2048x682_1707364876796.jpg")" alt="2048x682" />
+                    </div>
+                </div>
+                <!-- nut bam trai phai -->
+                <div class="buttons">
+                    <button id="previous"><</button>
+                    <button id="next">></button>
+                </div>
+                <!-- nut giua cac slide -->
+                <ul class="dots">
+                    <li class="active"></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</main>
+
+<div id="wrapper">
+    <div class="headline">
+        <h3>Phim Đang Chiếu</h3>
+    </div>
+    <ul class="product">
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <li>
+                    <div class="product-item">
+                        <div class="product-top">
+                            <a href="@Url.Action("Detail", "Detail", new { id = item.phim_id })" class="product-thumb">
+                                <img src="@Url.Content(item.anh)" alt="@item.ten_phim">
+
+                            </a>
+                            <!-- Đặt Vé -->
+                            <a href="@Url.Action("Detail", "Detail", new { id = item.phim_id })" class="buy-now">Đặt Vé</a>
+                        </div>
+                        <div class="product-info">
+                            <a href="@Url.Action("Detail", "Detail", new { id = item.phim_id })" class="product-name">@item.ten_phim</a>
+
+                        </div>
+                    </div>
+                </li>
+            }
+        }
+        else
+        {
+        }
+    </ul>
+</div>
+<script>
+    let slider = document.querySelector('.slider .list');
+    let items = document.querySelectorAll('.slider .list .item');
+    let next = document.getElementById('next');
+    let prev = document.getElementById('previous');
+    let dots = document.querySelectorAll('.slider .dots li');
+
+    let lengthItems = items.length - 1;
+    let active = 0;
+    next.onclick = function () {
+        active = active + 1 <= lengthItems ? active + 1 : 0;
+        reloadSlider();
+    }
+    prev.onclick = function () {
+        active = active - 1 >= 0 ? active - 1 : lengthItems;
+        reloadSlider();
+    }
+    let refreshInterval = setInterval(() => { next.click() }, 3000);
+    function reloadSlider() {
+        slider.style.left = -items[active].offsetLeft + 'px';
+
+        let last_active_dot = document.querySelector('.slider .dots li.active');
+        last_active_dot.classList.remove('active');
+        dots[active].classList.add('active');
+
+        clearInterval(refreshInterval);
+        refreshInterval = setInterval(() => { next.click() }, 3000);
+    }
+    dots.forEach((li, key) => {
+        li.addEventListener('click', () => {
+            active = key;
+            reloadSlider();
+        })
+    })
+    window.onresize = function (event) {
+        reloadSlider();
+    };
+</script>
+<script>
+    // Tạo hiệu ứng bông tuyết
+    const container = document.getElementById('snowflakeContainer');
+
+    function createSnowflake() {
+        const snowflake = document.createElement('p');
+        snowflake.textContent = '❄';
+        snowflake.className = 'snowflake';
+
+        // Thiết lập vị trí và kích thước ngẫu nhiên
+        snowflake.style.left = Math.random() * window.innerWidth + 'px';
+        snowflake.style.animationDuration = Math.random() * 5 + 5 + 's'; // Thời gian rơi
+        snowflake.style.fontSize = Math.random() * 40 + 25 + 'px'; // Kích thước ngẫu nhiên
+        snowflake.style.opacity = Math.random(); // Độ trong suốt ngẫu nhiên
+
+        container.appendChild(snowflake);
+
+        // Xóa bông tuyết sau một khoảng thời gian
+        setTimeout(() => {
+            snowflake.remove();
+        }, 10000); // Xóa sau 10 giây
+    }
+
+    // Tạo bông tuyết mới mỗi 200ms
+    setInterval(createSnowflake, 100);
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const popup = document.getElementById("popup");
+        const closeBtn = document.getElementById("close-popup");
+
+        // Hiển thị popup sau khi tải trang
+        setTimeout(() => {
+            popup.classList.add("show");
+        }, 5000); // 1 giây sau khi tải trang
+
+        // Đóng popup khi nhấn nút đóng
+        closeBtn.addEventListener("click", () => {
+            popup.classList.remove("show");
+        });
+    });
+
+</script>

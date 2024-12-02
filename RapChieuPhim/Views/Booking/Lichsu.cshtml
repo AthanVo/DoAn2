@@ -1,0 +1,112 @@
+﻿@model IEnumerable<RapChieuPhim.Models.Dat_ve>
+
+@{
+    ViewBag.Title = "Lịch Sử Đặt Vé";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Sử Đặt Vé</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .details-button {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+            .details-button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Lịch Sử Đặt Vé</h2>
+        @if (Model != null && Model.Any())
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ngày Đặt</th>
+                        <th>Tên Phim</th>
+                        <th>Suất chiếu</th>
+                        <th>Giá Vé</th>
+                        <th>Chi Tiết</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.thoi_gian_dat.Value.ToString("dd/MM/yyyy")</td>
+                            <td>@item.Suat_chieu.Phim.ten_phim</td>
+                            <td>Chiếu từ: @item.Suat_chieu.gio_bat_dau | @item.Suat_chieu.gio_ket_thuc</td>
+                            <td>@(item.tong_tien.HasValue ? item.tong_tien.Value.ToString("N0") : "0") VND</td>
+                            
+                            <td><a class="details-button" href="@Url.Action("Chitietdatve", "Booking", new { datVeId = item.dat_ve_id })">Chi Tiết</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        }
+        else
+        {
+            <p>Bạn chưa có lịch sử đặt vé.</p>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<RapChieuPhim.Models.Phim>
+
+@{
+    ViewBag.Title = "Phim";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Phim</h2>
+
+<p>
+    @Html.ActionLink("Thêm phim mới", "Create", new { area = "Admin" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.ten_phim)</th>
+        <th>@Html.DisplayNameFor(model => model.the_loai)</th>
+        <th>@Html.DisplayNameFor(model => model.thoi_luong)</th>
+        <th>Mô tả</th>
+        <th>@Html.DisplayNameFor(model => model.ngay_khoi_chieu)</th>
+        <th>Ảnh</th>
+        <th>Video</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.ten_phim)</td>
+            <td>@Html.DisplayFor(modelItem => item.the_loai)</td>
+            <td>@Html.DisplayFor(modelItem => item.thoi_luong) phút</td>
+            <td>
+                @(item.mo_ta != null && item.mo_ta.Length > 20 ? item.mo_ta.Substring(0, 20) + "..." : item.mo_ta)
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.ngay_khoi_chieu)</td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.anh))
+                {
+                    <img src="@Url.Content(item.anh)" alt="@item.ten_phim" id="backgroundImg" style="max-width: 100%; max-height: 150px;" />
+                }
+                else
+                {
+                    <span>Không có ảnh</span>
+                }
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.video))
+                {
+                    <video id="video" controls style="width: 300px; height: auto;">
+                        <source src="@Url.Content(item.video)" type="video/mp4">
+                        Trình duyệt của bạn không hỗ trợ phát video.
+                    </video>
+                }
+                else
+                {
+                    <span>Không có video</span>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.phim_id }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.phim_id }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.phim_id })
+            </td>
+        </tr>
+    }
+</table>

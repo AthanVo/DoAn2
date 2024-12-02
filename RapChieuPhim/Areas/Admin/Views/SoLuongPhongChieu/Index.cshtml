@@ -1,0 +1,46 @@
+﻿@model IEnumerable<RapChieuPhim.Models.Rap_chieu_phim>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Trang danh sách phòng</h2>
+
+<p>
+    @Html.ActionLink("Tạo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ten_rap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dia_chi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tong_so_ghe)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ten_rap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dia_chi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tong_so_ghe)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.rap_id }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.rap_id }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.rap_id })
+        </td>
+    </tr>
+}
+
+</table>

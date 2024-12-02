@@ -1,0 +1,336 @@
+﻿/* RESET STYLES */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* HEADER STYLES */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo img {
+    max-width: 150px;
+    height: auto;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .menu li {
+        margin: 0 15px;
+        position: relative;
+    }
+
+    .menu a {
+        text-decoration: none;
+        font-size: 16px;
+        color: #333;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+        .menu a:hover {
+            color: #ff5722;
+        }
+
+/* DROPDOWN MENU */
+.sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: none;
+    list-style: none;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.menu li:hover .sub-menu {
+    display: block;
+}
+
+.sub-menu li {
+    padding: 5px 20px;
+}
+
+    .sub-menu li a {
+        color: #555;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+        .sub-menu li a:hover {
+            color: #ff5722;
+        }
+
+/* RESPONSIVE HEADER */
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .logo img {
+        max-width: 120px;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+        .menu li {
+            margin: 10px 5px;
+        }
+}
+
+/* FOOTER STYLES */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+    .footer .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer .footer-col {
+        flex: 1 1 calc(25% - 20px);
+        margin: 10px;
+        text-align: left;
+    }
+
+        .footer .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .footer .footer-col ul li {
+                margin-bottom: 10px;
+            }
+
+                .footer .footer-col ul li a {
+                    color: #ddd;
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                }
+
+                    .footer .footer-col ul li a:hover {
+                        color: #ff5722;
+                    }
+
+    /* SOCIAL LINKS */
+    .footer .social-links {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 20px;
+    }
+
+        .footer .social-links a {
+            color: #ddd;
+            margin-right: 15px;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+            .footer .social-links a:hover {
+                color: #ff5722;
+            }
+
+/* RESPONSIVE FOOTER */
+@media (max-width: 768px) {
+    .footer .container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .footer .footer-col {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+
+    .footer .social-links {
+        justify-content: center;
+    }
+}
+
+/* SEARCH BOX */
+#search-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+#searchInput {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    width: 200px;
+}
+
+    #searchInput:focus {
+        border-color: #ff5722;
+    }
+
+#search-icon i {
+    position: absolute;
+    right: 10px;
+    font-size: 16px;
+    color: #888;
+}
+
+/* RESPONSIVE SEARCH */
+@media (max-width: 768px) {
+    #search-icon {
+        margin-top: 10px;
+    }
+
+    #searchInput {
+        width: 100%;
+    }
+}
+
+/* SLIDER STYLES */
+.main-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+    .slider .list {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .slider .item {
+        flex: 0 0 100%;
+        max-width: 100%;
+        position: relative;
+    }
+
+    .slider img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+/* BUTTONS */
+.buttons {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+    .buttons button {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 50%;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+    }
+
+        .buttons button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+/* DOTS */
+.dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+    .dots li {
+        width: 12px;
+        height: 12px;
+        margin: 0 5px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .dots li.active {
+            background-color: #ff5722;
+        }
+
+/* RESPONSIVE STYLES */
+@media (max-width: 768px) {
+    .buttons button {
+        padding: 8px 16px;
+        font-size: 16px;
+    }
+
+    .dots li {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .buttons button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .dots li {
+        width: 8px;
+        height: 8px;
+    }
+}

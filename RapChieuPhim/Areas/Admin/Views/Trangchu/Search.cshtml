@@ -1,0 +1,43 @@
+﻿@model IEnumerable<RapChieuPhim.Models.SearchResult>
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Kết quả tìm kiếm</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-warning">@ViewBag.Message</div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Loại</th>
+                <th>Tên</th>
+                <th>Chi tiết</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Category</td>
+                    <td>@item.Name</td>
+                    <td>
+                        @Html.ActionLink(
+                            "Xem chi tiết",          // Text hiển thị
+                            "Details",               // Tên action
+                            item.Category,           // Controller được xác định dựa trên Category
+                            new { id = item.Id },    // Tham số truyền vào
+                            null                     // Thuộc tính HTML bổ sung
+                        )
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}

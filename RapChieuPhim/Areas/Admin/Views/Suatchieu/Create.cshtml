@@ -1,0 +1,87 @@
+﻿@model RapChieuPhim.Models.Suat_chieu
+
+@{
+    ViewBag.Title = "Thêm mới suất chiếu";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thêm mới suất chiếu</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Thông tin suất chiếu</h4>
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.phim_id, "Phim", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("phim_id", new SelectList(ViewBag.Phims, "phim_id", "ten_phim"), "Chọn phim", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.phim_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rap_id, "Rạp", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("rap_id", new SelectList(ViewBag.Raps, "rap_id", "ten_rap"), "Chọn rạp", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.rap_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.man_hinh_id, "Màn hình", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("man_hinh_id", new SelectList(ViewBag.ManHinhs, "man_hinh_id", "ten_man_hinh"), "Chọn màn hình", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.man_hinh_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ngay_chieu, "Ngày chiếu", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ngay_chieu, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(model => model.ngay_chieu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.gio_bat_dau, "Giờ bắt đầu", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.gio_bat_dau, new { @class = "form-control", type = "time" })
+                @Html.ValidationMessageFor(model => model.gio_bat_dau, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.gio_ket_thuc, "Giờ kết thúc", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.gio_ket_thuc, new { @class = "form-control", type = "time" })
+                @Html.ValidationMessageFor(model => model.gio_ket_thuc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tong_so_ghe_con_lai, "Tổng số ghế còn lại", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tong_so_ghe_con_lai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tong_so_ghe_con_lai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Trở về", "Index")
+</div>

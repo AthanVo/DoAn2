@@ -1,0 +1,59 @@
+﻿@model RapChieuPhim.Models.Dat_ve
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Đặt vé</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nguoi_dung_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nguoi_dung_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.suat_chieu_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.suat_chieu_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thoi_gian_dat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thoi_gian_dat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tong_tien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tong_tien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ghe_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ghe_id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.dat_ve_id }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

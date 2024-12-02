@@ -1,0 +1,69 @@
+﻿@model IEnumerable<RapChieuPhim.Models.Suat_chieu>
+
+@{
+    ViewBag.Title = "Đặt Vé";
+    Layout = null;
+    <link href="~/Content/datve.css" rel="stylesheet" />
+}
+
+<h1>Lịch Chiếu Phim</h1>
+<div class="container">
+    @foreach (var suatChieu in Model)
+    {
+        <div class="film">
+            <h1>@suatChieu.Phim.ten_phim</h1>
+            <div class="location">
+                <h2>@suatChieu.Rap_chieu_phim.ten_rap</h2>
+                <div class="showtimes">
+                    <h3>2D | Phụ đề</h3>
+                    <h3>@(suatChieu.ngay_chieu.HasValue ? suatChieu.ngay_chieu.Value.ToString("dd-MM-yyyy") : "Ngày không xác định")</h3>
+                    <table>
+                        <tr>
+                            <th>@suatChieu.Rap_chieu_phim.ten_rap</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Datghe", "Booking", new { filmId = suatChieu.phim_id, suatchieuId = suatChieu.suat_chieu_id })">
+                                    @suatChieu.gio_bat_dau - @suatChieu.gio_ket_thuc
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Số ghế còn lại: <span id="remainingSeats_@(suatChieu.suat_chieu_id)">@suatChieu.tong_so_ghe_con_lai</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<script>
+    // Hàm để lấy và cập nhật số ghế cho mỗi suất chiếu
+    function fetchSeats(suatChieuId) {
+        fetch(`/api/BookingApi/GetRemainingSeats/${suatChieuId}`)
+            .then(response => response.json())
+            .then(data => {
+                const seatElement = document.getElementById(`remainingSeats_${suatChieuId}`);
+                if (seatElement) {
+                    seatElement.textContent = `${data.remainingSeats} ghế ngồi`;
+                }
+            });
+    }
+
+    // Polling: Gọi API mỗi 5 giây để cập nhật số ghế cho tất cả các suất chiếu
+    setInterval(function () {
+        // Lấy tất cả các suatChieuId từ các phần tử trên trang
+        const suatChieuElements = document.querySelectorAll('[id^="remainingSeats_"]');
+        suatChieuElements.forEach(function (element) {
+            const suatChieuId = element.id.split('_')[1]; // Lấy suatChieuId từ id phần tử
+            fetchSeats(suatChieuId); // Gọi hàm fetchSeats với suatChieuId tương ứng
+        });
+    }, 5000); // 5000 milliseconds = 5 giây
+
+
+</script>
+

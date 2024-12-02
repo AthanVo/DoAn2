@@ -1,0 +1,297 @@
+﻿@model IEnumerable<RapChieuPhim.Models.Dat_cho>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chọn Ghế</title>
+    <link href="~/Content/datve.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f8fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .booking-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            width: 900px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .seating-selection {
+            margin-bottom: 30px;
+        }
+
+        .screen {
+            background-color: #6c757d;
+            padding: 15px;
+            font-weight: bold;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .seating {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr); /* Mỗi hàng có 8 ghế */
+            gap: 15px;
+        }
+
+        .seat {
+            width: 60px;
+            height: 60px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+            .seat.occupied::before {
+                content: 'X';
+                color: red;
+                font-size: 28px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .seat.occupied {
+                background-color: #b5b5b5;
+                pointer-events: none;
+            }
+
+
+            .seat.selected {
+                background-color: #4CAF50;
+                color: #fff;
+                font-weight: bold;
+            }
+
+            .seat.vip {
+                background-color: orange;
+                color: #fff;
+                font-weight: bold;
+            }
+
+                .seat.vip.selected {
+                    background-color: #4CAF50;
+                    color: #fff;
+                }
+
+            .seat:hover:not(.occupied):not(.selected) {
+                background-color: #6c757d;
+                color: white;
+            }
+
+        #seatPrice {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            display: none;
+        }
+
+        button {
+            padding: 14px 28px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        .legend {
+            display: flex;
+            justify-content: space-between; /* Canh đều các phần tử */
+            gap: 40px; /* Khoảng cách giữa các phần tử legend */
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center; /* Canh giữa theo trục dọc */
+            gap: 10px; /* Khoảng cách giữa ghế và văn bản */
+            font-size: 16px;
+            color: #333;
+        }
+
+        .legend-seat {
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+            .legend-seat.occupied {
+                background-color: #b5b5b5;
+                color: red;
+                font-weight: bold;
+            }
+
+                .legend-seat.occupied .legend-x {
+                    position: absolute;
+                    color: red;
+                    font-size: 18px;
+                    font-weight: bold;
+                    line-height: 1; /* Điều chỉnh khoảng cách dòng */
+                }
+
+            .legend-seat.vip {
+                background-color: orange;
+                color: #fff;
+            }
+
+            .legend-seat.available {
+                background-color: #e0e0e0;
+                color: #333;
+            }
+
+            .legend-seat.selected {
+                background-color: #4CAF50;
+                color: #fff;
+            }
+
+
+
+    </style>
+
+</head>
+<body>
+    <div class="booking-container">
+        <header>
+            <h1>Chọn Ghế Của Bạn</h1>
+        </header>
+
+        <main>
+            <section class="seating-selection">
+                <div class="screen">Màn Hình</div>
+
+                <div class="seating">
+                    @foreach (var seat in Model)
+                    {
+                        <div class="seat @(seat.da_dat.HasValue && seat.da_dat.Value ? "occupied" : "available") @(seat.Ghe_ngoi.Loai_ghe.ten_loai_ghe == "VIP" ? "vip" : "")"
+                             data-seat="@seat.ghe_id"
+                             data-price="@seat.Ghe_ngoi.Loai_ghe.gia_ve">
+                            @seat.Ghe_ngoi.so_ghe
+                        </div>
+                    }
+                </div>
+
+
+                <div id="seatPrice">Giá vé: <span id="priceValue"></span> VND</div>
+                <button type="button" id="confirmSeats">Xác nhận đặt vé</button>
+
+            </section>
+        </main>
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-seat vip"></div>
+                <span>Ghế VIP</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-seat available"></div>
+                <span>Ghế có thể chọn</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-seat occupied">
+                    <span class="legend-x">X</span> <!-- Thêm dấu X vào ghế đã đặt -->
+                </div>
+                <span>Ghế đã đặt</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-seat selected"></div>
+                <span>Ghế đã chọn</span>
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Thanhtoan", "Booking", FormMethod.Post, new { id = "bookingForm" }))
+    {
+        <input type="hidden" name="filmId" value="@ViewBag.FilmId" />
+        <input type="hidden" name="suatchieuId" value="@ViewBag.SuatChieuId" />
+        <input type="hidden" id="selectedSeatsInput" name="selectedSeats" />
+        <input type="hidden" id="totalPriceInput" name="totalPrice" value="@ViewBag.Amount" />
+        <input type="hidden" name="userId" value="@ViewBag.UserId" /> <!-- Thêm input ẩn cho ID người dùng -->
+    }
+    <script>
+    var filmId = '@ViewBag.FilmId';
+    var suatChieuId = '@ViewBag.SuatChieuId';
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const seats = document.querySelectorAll('.seat:not(.occupied)'); // Chỉ chọn ghế không bị chiếm
+            const confirmButton = document.getElementById('confirmSeats');
+            const seatPriceDiv = document.getElementById('seatPrice');
+            const priceValueSpan = document.getElementById('priceValue');
+            const selectedSeatsInput = document.getElementById('selectedSeatsInput');
+            const totalPriceInput = document.getElementById('totalPriceInput');
+            let totalPrice = 0;
+
+            // Xử lý sự kiện chọn ghế
+            seats.forEach(seat => {
+                seat.addEventListener('click', () => {
+                    seat.classList.toggle('selected');
+                    const price = parseInt(seat.getAttribute('data-price'));
+                    totalPrice += seat.classList.contains('selected') ? price : -price;
+                    priceValueSpan.textContent = totalPrice.toLocaleString('vi-VN');
+                    seatPriceDiv.style.display = totalPrice > 0 ? 'block' : 'none';
+                    // Cập nhật giá trị totalPrice vào input ẩn
+                    totalPriceInput.value = totalPrice;
+                });
+            });
+            // Khi người dùng nhấn nút xác nhận
+            confirmButton.addEventListener('click', () => {
+                const selectedSeats = document.querySelectorAll('.seat.selected');
+                const seatNumbers = Array.from(selectedSeats).map(seat => seat.getAttribute('data-seat'));
+                selectedSeatsInput.value = seatNumbers.join(',');
+                // Submit form để chuyển sang trang thanh toán mà không khóa ghế
+                bookingForm.submit();
+            });
+        });
+    </script>
+</body>
+</html>

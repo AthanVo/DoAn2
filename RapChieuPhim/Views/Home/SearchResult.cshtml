@@ -1,0 +1,42 @@
+﻿@model PagedList.IPagedList<RapChieuPhim.Models.Phim>
+@using PagedList.Mvc;
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="wrapper">
+    <div class="headline">
+        <h3>Kết Quả Tìm Kiếm</h3>
+    </div>
+    <ul class="product">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <li>
+                    <div class="product-item">
+                        <div class="product-top">
+                            <a href="@Url.Action("Detail", "Detail", new { id = item.phim_id })" class="product-thumb">
+                                <img src="@Url.Content(item.anh)" alt="@item.ten_phim">
+                            </a>
+                            <!-- Đặt Vé -->
+                            <a href="@Url.Action("Detail", "Detail", new { id = item.phim_id })" class="buy-now">Đặt Vé</a>
+                        </div>
+                        <div class="product-info">
+                            <a href="@Url.Action("Detail", "Detail", new { id = item.phim_id })" class="product-name">@item.ten_phim</a>
+
+                            <div class="product-price">Thời lượng phim: @item.thoi_luong phút  Khởi chiếu: @item.ngay_khoi_chieu.Value.ToString("dd/MM/yyyy")</div>
+                        </div>
+                    </div>
+                </li>
+            }
+        }
+        else
+        {
+            <p>Không có kết quả phù hợp.</p>
+        }
+
+    </ul>
+    <div class="pagination-container">
+        @Html.PagedListPager(Model, page => Url.Action("Search", new { page }))
+    </div>
+</div>

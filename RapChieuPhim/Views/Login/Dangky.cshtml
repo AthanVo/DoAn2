@@ -1,0 +1,181 @@
+﻿@{
+    ViewBag.Title = "Đăng Ký";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký thành viên</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+            .form-group i {
+                position: absolute;
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #aaa;
+            }
+
+        .form-input {
+            width: 90%;
+            padding: 10px 10px 10px 40px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+            .form-input[type="date"] {
+                padding: 10px;
+            }
+
+        .form-submit {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            background-color: #764ba2;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+            .form-submit:hover {
+                background-color: #5a3992;
+            }
+
+        a {
+            text-decoration: none;
+            color: #764ba2;
+            font-size: 14px;
+            display: block;
+            margin-top: 10px;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        media (max-width: 768px) {
+            .form-container
+
+        {
+            width: 90%;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Đăng Ký Thành Viên</h2>
+
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <i class="fa-regular fa-user"></i>
+                @Html.TextBox("HotenKH", ViewData["HotenKH"] != null ? ViewData["HotenKH"].ToString() : "", new { @class = "form-input", placeholder = "Họ và tên khách hàng" })
+                @if (ViewData["Loi1"] != null)
+                {
+                    <small style="color: red;">@ViewData["Loi1"]</small>
+                }
+            </div>
+
+            <div class="form-group">
+                <i class="fa-regular fa-user"></i>
+                @Html.TextBox("TenDN", ViewData["TenDN"] != null ? ViewData["TenDN"].ToString() : "", new { @class = "form-input", placeholder = "Tên đăng nhập" })
+                @if (ViewData["Loi2"] != null)
+                {
+                    <small style="color: red;">@ViewData["Loi2"]</small>
+                }
+            </div>
+
+            <div class="form-group">
+                <i class="fa-solid fa-key"></i>
+                @Html.Password("Matkhau", new { @class = "form-input", placeholder = "Mật khẩu" })
+                @if (ViewData["Loi3"] != null)
+                {
+                    <small style="color: red;">@ViewData["Loi3"]</small>
+                }
+            </div>
+
+            <div class="form-group">
+                <i class="fa-solid fa-key"></i>
+                @Html.Password("Matkhaunhaplai", new { @class = "form-input", placeholder = "Nhập lại mật khẩu" })
+                @if (ViewData["Loi4"] != null)
+                {
+                    <small style="color: red;">@ViewData["Loi4"]</small>
+                }
+            </div>
+
+            <div class="form-group">
+                <i class="fa-regular fa-envelope"></i>
+                @Html.TextBox("Email", ViewData["Email"] != null ? ViewData["Email"].ToString() : "", new { @class = "form-input", placeholder = "Email" })
+                @if (ViewData["Loi5"] != null)
+                {
+                    <small style="color: red;">@ViewData["Loi5"]</small>
+                }
+            </div>
+
+            <div class="form-group">
+                <i class="fa-solid fa-phone"></i>
+                @Html.TextBox("Dienthoai", ViewData["Dienthoai"] != null ? ViewData["Dienthoai"].ToString() : "", new { @class = "form-input", placeholder = "Điện thoại" })
+                @if (ViewData["Loi6"] != null)
+                {
+                    <small style="color: red;">@ViewData["Loi6"]</small>
+                }
+            </div>
+
+            
+
+            <input type="submit" value="Đăng ký" class="form-submit" />
+            <a href="@Url.Action("Index", "Home")">Trở về trang chủ</a>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿@model RapChieuPhim.Models.Ghe_ngoi
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Ghe_ngoi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.man_hinh_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.man_hinh_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.so_ghe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.so_ghe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.loai_ghe_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.loai_ghe_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rap_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rap_id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.ghe_id }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

@@ -1,0 +1,137 @@
+﻿@model RapChieuPhim.Models.Phim
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Phim</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ten_phim)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ten_phim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.the_loai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.the_loai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thoi_luong)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.thoi_luong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mo_ta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.mo_ta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_khoi_chieu)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ngay_khoi_chieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diem_danh_gia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.diem_danh_gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dao_dien)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.dao_dien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dien_vien_id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.dien_vien_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quoc_gia_id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.quoc_gia_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.luot_vote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.luot_vote)
+        </dd>
+
+        <!-- Hiển thị ảnh -->
+        <dt>Ảnh</dt>
+        <dd>
+            @if (!string.IsNullOrEmpty(Model.anh))
+            {
+                <img src="@Url.Content(Model.anh)" alt="@Model.ten_phim" style="max-width: 150px; max-height: 150px;" />
+            }
+            else
+            {
+                <p>Không có ảnh.</p>
+            }
+        </dd>
+
+        <!-- Hiển thị ảnh video -->
+        <dt>Ảnh Video</dt>
+        <dd>
+            @if (!string.IsNullOrEmpty(Model.anh_video))
+            {
+                <img src="@Url.Content(Model.anh_video)" alt="@Model.ten_phim" style="max-width: 150px; max-height: 150px;" />
+            }
+            else
+            {
+                <p>Không có ảnh video.</p>
+            }
+        </dd>
+
+        <!-- Hiển thị video -->
+        <dt>Video</dt>
+        <dd>
+            @if (!string.IsNullOrEmpty(Model.video))
+            {
+                <video id="video" controls style="width: 300px; height: auto;">
+                    <source src="@Url.Content(Model.video)" type="video/mp4" />
+                    Trình duyệt của bạn không hỗ trợ phát video.
+                </video>
+            }
+            else
+            {
+                <p>Không có video.</p>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nha_san_xuat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.nha_san_xuat)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.phim_id }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

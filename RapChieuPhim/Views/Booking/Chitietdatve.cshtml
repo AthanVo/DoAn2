@@ -1,0 +1,93 @@
+﻿@model RapChieuPhim.Models.Dat_ve
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Vé Xem Phim</title>
+    <link href="~/Content/datve.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+        }
+
+        .details-row {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .movie-details {
+            margin-right: 20px;
+        }
+
+            .movie-details h2 {
+                margin-top: 0;
+                margin-bottom: 10px;
+                font-size: 24px;
+            }
+
+            .movie-details p {
+                margin: 5px 0;
+            }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+            .back-button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Thông Tin Đặt Vé Xem Phim</h1>
+        <p>Ngày: @Model.Suat_chieu.Phim.ngay_khoi_chieu.Value.ToString("dd/MM/yyyyy")</p>
+    </header>
+    <main>
+        <div class="details-row">
+            <section class="movie-details">
+                <h2>Màn hình - 2D</h2>
+                <p><strong>Mã đặt vé:</strong> @Model.dat_ve_id</p>
+                <p><strong>Phim:</strong> @Model.Suat_chieu.Phim.ten_phim</p>
+                <p><strong>Suất chiếu từ:</strong> @Model.Suat_chieu.gio_bat_dau | @Model.Suat_chieu.gio_ket_thuc </p>
+                <p><strong>Ghế ngồi:</strong> @Model.Ghe_ngoi.so_ghe</p>
+                <p><strong>Tổng tiền:</strong> @Model.tong_tien VND</p>
+                <p><strong>Thời gian đặt:</strong> @Model.thoi_gian_dat.Value.ToString("dd/MM/yyyyy")</p>
+                <p><strong>Họ tên:</strong> @Model.Nguoi_dung.ho_ten</p>
+            </section>
+        </div>
+    </main>
+    <a class="back-button" href="@Url.Action("Index", "Home")">Quay lại Trang Chủ</a>
+</body>
+</html>

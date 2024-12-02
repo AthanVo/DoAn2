@@ -1,0 +1,57 @@
+﻿@model IEnumerable<RapChieuPhim.Models.Dat_ve>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Đặt vé</h2>
+
+<p>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nguoi_dung_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.suat_chieu_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.thoi_gian_dat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tong_tien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ghe_id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nguoi_dung_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.suat_chieu_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.thoi_gian_dat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tong_tien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ghe_id)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.dat_ve_id }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.dat_ve_id }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.dat_ve_id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,43 @@
+﻿@model List<RapChieuPhim.Models.Khuyen_mai>
+@{
+    ViewBag.Title = "Khuyenmai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div class="headline" style="margin-top: 50px;">
+        <h3>ƯU ĐÃI</h3>
+    </div>
+    <ul class="product">
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <li>
+                    <div class="product-item">
+                        <div class="product-top">
+                            <a href="@Url.Action("Chitietkhuyenmai", "Promotion", new { id = item.ma_khuyen_mai_id })" class="product-thumb">
+                                <!-- Hiển thị ảnh với đường dẫn từ cơ sở dữ liệu -->
+                                <img src="@Url.Content(item.anh)" alt="@item.ten_khuyen_mai" style="max-width: 200px; max-height: 150px;" />
+                            </a>
+                            <a href="@Url.Action("Chitietkhuyenmai", "Promotion", new { id = item.ma_khuyen_mai_id })" class="buy-now">SĂN NGAY</a>
+                        </div>
+                        <div class="product-info">
+                            <a href="@Url.Action("Chitietkhuyenmai", "Promotion", new { id = item.ma_khuyen_mai_id })" class="product-name">
+                                @item.ten_khuyen_mai
+                            </a>
+                            <div class="product-price">
+                                Ngày bắt đầu: @item.ngay_bat_dau.ToString("dd/MM/yyyy")<br />
+                                Ngày Kết thúc: @item.ngay_ket_thuc.ToString("dd/MM/yyyy")
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+        }
+        else
+        {
+            <p>Không có khuyến mãi nào để hiển thị.</p>
+        }
+    </ul>
+</div>

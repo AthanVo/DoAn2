@@ -1,0 +1,75 @@
+﻿@model RapChieuPhim.Models.Suat_chieu
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Suat_chieu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.phim_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phim_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.man_hinh_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.man_hinh_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_chieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_chieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gio_bat_dau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gio_bat_dau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gio_ket_thuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gio_ket_thuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rap_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rap_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tong_so_ghe_con_lai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tong_so_ghe_con_lai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.suat_chieu_id }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

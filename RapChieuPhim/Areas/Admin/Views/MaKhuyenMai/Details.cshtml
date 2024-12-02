@@ -1,0 +1,83 @@
+﻿@model RapChieuPhim.Models.Khuyen_mai
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Khuyến mãi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ten_khuyen_mai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten_khuyen_mai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mo_ta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mo_ta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phan_tram_giam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phan_tram_giam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_bat_dau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_bat_dau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_ket_thuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_ket_thuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trang_thai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trang_thai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ma_giam_gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ma_giam_gia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.ma_khuyen_mai_id }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

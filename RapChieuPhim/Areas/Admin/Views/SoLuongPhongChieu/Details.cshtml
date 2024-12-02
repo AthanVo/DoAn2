@@ -1,0 +1,43 @@
+﻿@model RapChieuPhim.Models.Rap_chieu_phim
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Rạp chiếu phim</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ten_rap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten_rap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dia_chi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dia_chi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tong_so_ghe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tong_so_ghe)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.rap_id }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

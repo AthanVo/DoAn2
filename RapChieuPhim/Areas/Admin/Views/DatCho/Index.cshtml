@@ -1,0 +1,48 @@
+﻿@model IEnumerable<RapChieuPhim.Models.Dat_cho>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Đặt chỗ</h2>
+
+<p>
+    @Html.ActionLink("Thêm ghế vào suất chiếu", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ghe_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.suat_chieu_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.da_dat)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ghe_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.suat_chieu_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.da_dat)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { ghe_id = item.ghe_id, suat_chieu_id = item.suat_chieu_id }) |
+                @Html.ActionLink("Chi tiết", "Details", new { ghe_id = item.ghe_id, suat_chieu_id = item.suat_chieu_id }) |
+                @Html.ActionLink("Xóa", "Delete", new { ghe_id = item.ghe_id, suat_chieu_id = item.suat_chieu_id }) |
+            </td>
+        </tr>
+    }
+
+</table>

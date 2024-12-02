@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Trang người dùng";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông Tin Người Dùng</title>
+    <!-- Thêm icon và font Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Tổng thể trang */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 650px;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            text-align: center;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .user-info {
+            text-align: left;
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .user-info p {
+            margin: 15px 0;
+            color: #444;
+            font-size: 20px;
+        }
+
+        .user-info p strong {
+            color: #007BFF;
+        }
+
+        .user-info p i {
+            margin-right: 10px;
+        }
+
+        .logout-button {
+            display: inline-block;
+            padding: 14px 30px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s;
+            text-transform: uppercase;
+        }
+
+        .logout-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            .user-info p {
+                font-size: 16px;
+            }
+
+            .logout-button {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fa-solid fa-user"></i> Thông Tin Người Dùng</h2>
+        <div class="user-info">
+            <p><i class="fa-solid fa-user"></i><strong>Họ Tên:</strong> @Session["ho_ten"]</p>
+            <p><i class="fa-solid fa-user-tag"></i><strong>Tên Đăng Nhập:</strong> @Session["ten_nguoi_dung"]</p>
+            <p><i class="fa-solid fa-phone"></i><strong> Số điện thoại:</strong> @Session["so_dien_thoai"]</p>
+            <p><i class="fa-solid fa-envelope"></i><strong> Email:</strong> @Session["Email"]</p>
+
+        </div>
+        <a class="logout-button" href="@Url.Action("Lichsu", "Booking")">Lịch Sử Đặt Vé</a>
+        <a class="logout-button" href="@Url.Action("DoiMatKhau", "Login")">Đổi mật khẩu</a>
+
+
+    </div>
+</body>
+</html>

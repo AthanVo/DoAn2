@@ -1,0 +1,137 @@
+﻿@model RapChieuPhim.Models.Phim
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xóa</h2>
+
+
+<div>
+    <h4>Phim</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ten_phim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten_phim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.the_loai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.the_loai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thoi_luong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thoi_luong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mo_ta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mo_ta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_khoi_chieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_khoi_chieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diem_danh_gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diem_danh_gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dao_dien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dao_dien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dien_vien_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dien_vien_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quoc_gia_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quoc_gia_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.luot_vote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.luot_vote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.video)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.video)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nha_san_xuat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nha_san_xuat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anh_video)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anh_video)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    }
+</div>

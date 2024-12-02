@@ -1,0 +1,57 @@
+﻿@model RapChieuPhim.Models.Dat_cho
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Tạo thêm ghế cho suất chiếu</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Dat_cho</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <!-- Nhập liệu ghe_id -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.ghe_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ghe_id, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập mã ghế" } })
+                @Html.ValidationMessageFor(model => model.ghe_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Nhập liệu suat_chieu_id -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.suat_chieu_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.suat_chieu_id, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập mã suất chiếu" } })
+                @Html.ValidationMessageFor(model => model.suat_chieu_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Nhập liệu da_dat -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.da_dat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.da_dat, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập trạng thái đã đặt" } })
+                @Html.ValidationMessageFor(model => model.da_dat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Nút tạo -->
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở về", "Index", null, new { @class = "btn btn-secondary" })
+</div>

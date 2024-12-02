@@ -1,0 +1,39 @@
+﻿@model RapChieuPhim.Models.Dat_cho
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ghe_id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ghe_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.suat_chieu_id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.suat_chieu_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.da_dat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.da_dat)
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { ghe_id = Model.ghe_id, suat_chieu_id = Model.suat_chieu_id }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

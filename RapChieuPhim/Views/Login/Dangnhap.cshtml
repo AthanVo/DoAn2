@@ -1,0 +1,140 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+        }
+
+        .form-input {
+            width: 90%;
+            padding: 10px 10px 10px 40px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-submit {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            background-color: #764ba2;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .form-submit:hover {
+            background-color: #5a3992;
+        }
+
+        .forgot-password-link {
+            display: block;
+            margin-top: 20px;
+            color: #764ba2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .forgot-password-link:hover {
+            text-decoration: underline;
+        }
+
+        a h1 {
+            font-size: 14px;
+            color: #764ba2;
+        }
+
+        a h1:hover {
+            text-decoration: underline;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        @using (Html.BeginForm("Dangnhap", "Login", FormMethod.Post, new { id = "form-login" }))
+        {
+            <h1 class="form-heading">ĐĂNG NHẬP</h1>
+            <div class="form-group">
+                <i class="fa-regular fa-user"></i>
+                <input type="text" name="TenDN" class="form-input" placeholder="Tên đăng nhập" required>
+            </div>
+            <div class="form-group">
+                <i class="fa-solid fa-key"></i>
+                <input type="password" name="MatKhau" class="form-input" placeholder="Mật khẩu" required>
+            </div>
+            <input type="submit" value="Đăng nhập" class="form-submit">
+            <a href="@Url.Action("Dangky", "Login")"><h1>Chưa có tài khoản đăng ký</h1></a>
+            <a href="@Url.Action("QuenMatKhau", "Login")" class="forgot-password-link">Quên mật khẩu?</a>
+        }
+
+        @if (ViewBag.Thongbao != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Thongbao</div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<RapChieuPhim.Models.Loai_ghe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách các loại ghế</h2>
+
+<p>
+    @Html.ActionLink("Thêm loại ghế", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ten_loai_ghe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gia_ve)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ten_loai_ghe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gia_ve)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.loai_ghe_id }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.loai_ghe_id }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.loai_ghe_id })
+        </td>
+    </tr>
+}
+
+</table>

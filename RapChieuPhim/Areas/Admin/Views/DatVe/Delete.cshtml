@@ -1,0 +1,65 @@
+﻿@model RapChieuPhim.Models.Dat_ve
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xóa</h2>
+
+<h3>Bạn có chắc là muốn xóa?</h3>
+<div>
+    <h4>Đăt vé</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nguoi_dung_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nguoi_dung_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.suat_chieu_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.suat_chieu_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thoi_gian_dat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thoi_gian_dat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tong_tien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tong_tien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ghe_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ghe_id)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    }
+</div>

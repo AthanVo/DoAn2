@@ -1,0 +1,55 @@
+﻿@model IEnumerable<RapChieuPhim.Models.Khuyen_mai>
+
+@{
+    ViewBag.Title = "Danh sách mã khuyến mãi";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách mã khuyến mãi</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới mã khuyến mãi", "Create", new { area = "Admin" }, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tên khuyến mãi</th>
+            <th>Mô tả</th>
+            <th>Phần trăm giảm</th>
+            <th>Ngày bắt đầu</th>
+            <th>Ngày kết thúc</th>
+            <th>Trạng thái</th>
+            <th>Ảnh</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ten_khuyen_mai</td>
+                <td>@item.mo_ta</td>
+                <td>@item.phan_tram_giam</td>
+                <td>@item.ngay_bat_dau.ToShortDateString()</td>
+                <td>@item.ngay_ket_thuc.ToShortDateString()</td>
+                <td>@(item.trang_thai ? "Hoạt động" : "Ngưng hoạt động")</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.anh))
+                    {
+                        <img src="@Url.Content(item.anh)" alt="Ảnh khuyến mãi" style="max-width: 100px; max-height: 100px;" />
+                    }
+                    else
+                    {
+                        <span>Không có ảnh</span>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.ma_khuyen_mai_id }) |
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.ma_khuyen_mai_id }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.ma_khuyen_mai_id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
