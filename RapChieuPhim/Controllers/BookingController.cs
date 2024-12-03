@@ -2,6 +2,7 @@
 using RapChieuPhim.Models;
 using RapChieuPhim.Models.Payments;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net;
@@ -68,6 +69,8 @@ namespace RapChieuPhim.Controllers
             content = content.Replace("{{Email}}", datVe.Nguoi_dung.email);
             content = content.Replace("{{Giave}}", datVe.tong_tien.ToString());
             content = content.Replace("{{Mave}}", datVe.dat_ve_id.ToString());
+            content = content.Replace("{{Suatchieu}}",datVe.Suat_chieu.gio_bat_dau.ToString());
+            content = content.Replace("{{Tenrap}}", datVe.Suat_chieu.Rap_chieu_phim.ten_rap);
             // Dùng string.Join để nối các số ghế lại
             content = content.Replace("{{Ghengoi}}", string.Join(", ", seatNames));
 
@@ -83,19 +86,39 @@ namespace RapChieuPhim.Controllers
 
         public ActionResult Chitietdatve(int datVeId)
         {
-            var datVe = data.Dat_ves.FirstOrDefault(dv => dv.dat_ve_id == datVeId);
+            // Lấy thông tin vé đặt
+            var datVe = data.Dat_ves
+                                .FirstOrDefault(dv => dv.dat_ve_id == datVeId);
+
             if (datVe == null)
             {
                 return HttpNotFound("Không tìm thấy thông tin đặt vé.");
             }
 
-            // Lấy thông tin về ghế và loại ghế
-            var ghe = data.Ghe_ngois.FirstOrDefault(g => g.ghe_id == datVe.ghe_id);
-            if (ghe != null)
-            {
-                datVe.Ghe_ngoi = ghe;
-                datVe.Ghe_ngoi.Loai_ghe = data.Loai_ghes.FirstOrDefault(lg => lg.loai_ghe_id == ghe.loai_ghe_id);
-            }
+            // Lấy thông tin người dùng
+            var nguoiDung = data.Nguoi_dungs.FirstOrDefault(nd => nd.nguoi_dung_id == datVe.nguoi_dung_id);
+
+            // Lấy danh sách ghế đã đặt thông qua bảng Chi_tiet_dat_ve
+            var gheList = data.Chi_tiet_dat_ves
+                              .Where(ct => ct.dat_ve_id == datVeId)  // Lấy các ghế liên kết với dat_ve_id
+                              .Select(ct => ct.Ghe_ngoi.so_ghe)     // Lấy số ghế từ bảng Ghe_ngoi
+                              .ToList();
+
+            // Tính số lượng ghế
+            ViewBag.GheCount = gheList.Count(); // Truyền số lượng ghế vào ViewBag
+
+            // Chỉ lấy ghế đầu tiên nếu có ghế đã đặt
+            string gheString = gheList.Any() ? string.Join(", ", gheList) : "Chưa có ghế nào";  // Trả về "Chưa có ghế nào" nếu không có ghế
+
+            // Lấy thông tin phim và suất chiếu
+            var suatChieu = data.Suat_chieus.FirstOrDefault(sc => sc.suat_chieu_id == datVe.suat_chieu_id);
+            var phim = suatChieu?.Phim; // Đảm bảo thông tin phim không null
+
+            // Truyền dữ liệu sang View
+            ViewBag.NguoiDung = nguoiDung;
+            ViewBag.GheList = gheString;  // Chỉ truyền ghế đại diện
+            ViewBag.SuatChieu = suatChieu;
+            ViewBag.Phim = phim;
 
             return View(datVe);
         }
@@ -235,6 +258,7 @@ namespace RapChieuPhim.Controllers
 
             Dat_ve datVe = null;
 
+            // Cập nhật trạng thái ghế đã đặt và tính tổng tiền cho tất cả ghế đã chọn
             foreach (var seatId in seatIds)
             {
                 var datCho = data.Dat_chos.FirstOrDefault(dc => dc.ghe_id == seatId && dc.suat_chieu_id == suatchieuId);
@@ -245,13 +269,46 @@ namespace RapChieuPhim.Controllers
                 }
             }
 
-            // Lưu các thay đổi vào cơ sở dữ liệu
+            // Lưu các thay đổi vào cơ sở dữ liệu (cập nhật thông tin ghế và trạng thái)
             data.SubmitChanges();
 
+            // Lưu thông tin đặt vé chung (chỉ lưu 1 lần sau khi tất cả ghế đã được đặt)
+            datVe = new Dat_ve
+            {
+                nguoi_dung_id = nguoiDungId,
+                suat_chieu_id = suatchieuId,
+                thoi_gian_dat = DateTime.Now,
+                tong_tien = totalPrice
+            };
 
-            //return RedirectToAction("VnpayReturn", new { datVeId = datVe.dat_ve_id });
+            data.Dat_ves.InsertOnSubmit(datVe);
+            data.SubmitChanges();
+
+            // Lưu các chi tiết đặt vé (với tất cả các ghế đã chọn)
+            foreach (var seatId in seatIds)
+            {
+                var chiTietDatVe = new Chi_tiet_dat_ve
+                {
+                    dat_ve_id = datVe.dat_ve_id,
+                    ghe_id = seatId,
+                    gia_ve = totalPrice // Giá vé có thể tính lại sau khi lưu tất cả
+                };
+                data.Chi_tiet_dat_ves.InsertOnSubmit(chiTietDatVe);
+            }
+
+            // Lưu lại vào cơ sở dữ liệu
+            data.SubmitChanges();
+
+            // Gửi email chỉ một lần sau khi tất cả các ghế đã được đặt và thông tin đã lưu vào cơ sở dữ liệu
+            var content = PrepareEmailContent(datVe, selectedSeats);
+            var customerEmail = GetCustomerEmail(datVe);
+            new MailHelper().SendMail(customerEmail, "Xác nhận đặt vé", content, datVe.Nguoi_dung.ho_ten);
+
+            // Chuyển hướng người dùng đến trang chi tiết đặt vé
             return RedirectToAction("Chitietdatve", new { datVeId = datVe.dat_ve_id });
         }
+
+
 
 
         public ActionResult VnpayReturn(int? suatchieuId, int? filmId, string selectedSeats, decimal? totalPrice)
@@ -269,6 +326,7 @@ namespace RapChieuPhim.Controllers
                         vnpay.AddResponseData(s, vnpayData[s]);
                     }
                 }
+
                 string vnp_ResponseCode = vnpay.GetResponseData("vnp_ResponseCode");
                 string vnp_TransactionStatus = vnpay.GetResponseData("vnp_TransactionStatus");
                 string vnp_SecureHash = Request.QueryString["vnp_SecureHash"];
@@ -276,7 +334,6 @@ namespace RapChieuPhim.Controllers
 
                 if (checkSignature && vnp_ResponseCode == "00" && vnp_TransactionStatus == "00")
                 {
-                    // Lấy ID của người dùng từ session
                     if (Session["Nguoi_dung_id"] == null)
                     {
                         return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "Bạn phải đăng nhập để đặt vé.");
@@ -284,45 +341,47 @@ namespace RapChieuPhim.Controllers
 
                     int nguoiDungId = (int)Session["Nguoi_dung_id"];
                     var seatIds = selectedSeats.Split(',').Select(int.Parse).ToList();
-
-
+                    decimal totalTransactionPrice = 0; // Khởi tạo biến tổng tiền
+                    Dat_ve datVe = null; // Khởi tạo ở ngoài vòng lặp
+                    // Cập nhật trạng thái ghế và tính tổng tiền
                     foreach (var seatId in seatIds)
                     {
                         var datCho = data.Dat_chos.FirstOrDefault(dc => dc.suat_chieu_id == suatchieuId && dc.ghe_id == seatId);
                         if (datCho != null)
                         {
-                            datCho.da_dat = true;
+                            datCho.da_dat = true; // Đánh dấu ghế đã đặt
+                            totalTransactionPrice += Convert.ToDecimal(datCho.Ghe_ngoi.Loai_ghe.gia_ve); // Tính tổng tiền
                         }
 
-                        var datVe = new Dat_ve
-                        {
-                            nguoi_dung_id = nguoiDungId,
-                            suat_chieu_id = suatchieuId,
-                            ghe_id = seatId,
-                            thoi_gian_dat = DateTime.Now,
-                            tong_tien = totalPrice
-                        };
-                        data.Dat_ves.InsertOnSubmit(datVe);
-                        data.SubmitChanges();
+                        // Lưu chi tiết đặt vé cho từng ghế (không cần tạo Dat_ve trong vòng lặp)
                         var chiTietDatVe = new Chi_tiet_dat_ve
                         {
-                            dat_ve_id = datVe.dat_ve_id,
                             ghe_id = seatId,
-                            gia_ve = datVe.tong_tien
+                            gia_ve = totalTransactionPrice // Giá vé có thể tính lại sau khi lưu tất cả
                         };
                         data.Chi_tiet_dat_ves.InsertOnSubmit(chiTietDatVe);
-                        // Lưu các thay đổi vào cơ sở dữ liệu
-                        data.SubmitChanges();
-
-
-
-                        var content = PrepareEmailContent(datVe, selectedSeats);
-                        var customerEmail = GetCustomerEmail(datVe);
-                        new MailHelper().SendMail(customerEmail, "Xác nhận đặt vé", content, datVe.Nguoi_dung.ho_ten);
-
-                        ViewBag.Message = "Giao dịch thành công!";
-                        ViewBag.OrderId = datVe.dat_ve_id;
                     }
+
+                    // Lưu thông tin đặt vé chung (chỉ lưu 1 lần sau khi tất cả ghế đã được xử lý)
+                    datVe = new Dat_ve
+                    {
+                        nguoi_dung_id = nguoiDungId,
+                        suat_chieu_id = suatchieuId,
+                        thoi_gian_dat = DateTime.Now,
+                        tong_tien = totalTransactionPrice // Sử dụng tổng tiền sau khi tính cho tất cả ghế
+                    };
+                    data.Dat_ves.InsertOnSubmit(datVe);
+
+                    // Lưu lại vào cơ sở dữ liệu (cập nhật trạng thái và các chi tiết)
+                    data.SubmitChanges();
+
+                    // Gửi email chỉ một lần sau khi tất cả ghế đã được đặt và thông tin đã lưu vào cơ sở dữ liệu
+                    var content = PrepareEmailContent(datVe, selectedSeats);
+                    var customerEmail = GetCustomerEmail(datVe);
+                    new MailHelper().SendMail(customerEmail, "Xác nhận đặt vé", content, datVe.Nguoi_dung.ho_ten);
+
+                    ViewBag.Message = "Giao dịch thành công!";
+                    ViewBag.OrderId = datVe.dat_ve_id;
                 }
                 else
                 {
