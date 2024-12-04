@@ -102,7 +102,7 @@
             font-size: 14px;
         }
 
-        media (max-width: 768px) {
+        @@media (max-width: 768px) {
             .form-container
 
         {
@@ -134,10 +134,9 @@
                     <small style="color: red;">@ViewData["Loi2"]</small>
                 }
             </div>
-
             <div class="form-group">
                 <i class="fa-solid fa-key"></i>
-                @Html.Password("Matkhau", new { @class = "form-input", placeholder = "Mật khẩu" })
+                <input type="password" name="Matkhau" class="form-input" placeholder="Mật khẩu" />
                 @if (ViewData["Loi3"] != null)
                 {
                     <small style="color: red;">@ViewData["Loi3"]</small>
@@ -146,12 +145,14 @@
 
             <div class="form-group">
                 <i class="fa-solid fa-key"></i>
-                @Html.Password("Matkhaunhaplai", new { @class = "form-input", placeholder = "Nhập lại mật khẩu" })
+                <input type="password" name="Matkhaunhaplai" class="form-input" placeholder="Nhập lại mật khẩu" />
                 @if (ViewData["Loi4"] != null)
                 {
                     <small style="color: red;">@ViewData["Loi4"]</small>
                 }
             </div>
+
+
 
             <div class="form-group">
                 <i class="fa-regular fa-envelope"></i>
@@ -171,7 +172,7 @@
                 }
             </div>
 
-            
+
 
             <input type="submit" value="Đăng ký" class="form-submit" />
             <a href="@Url.Action("Index", "Home")">Trở về trang chủ</a>
