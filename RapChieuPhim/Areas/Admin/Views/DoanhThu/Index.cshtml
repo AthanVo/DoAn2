@@ -1,9 +1,7 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-
 
 <div class="container">
     <h2>Thống Kê Doanh Thu</h2>
@@ -13,10 +11,13 @@
             <div class="card text-white bg-primary mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Tổng Doanh Thu</h5>
-                    <p class="card-text">@ViewBag.TongDoanhThu.ToString("C")</p>
+                    <p class="card-text">
+                        @ViewBag.TongDoanhThu.ToString("C0", new System.Globalization.CultureInfo("vi-VN"))
+                    </p>
                 </div>
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="card text-white bg-success mb-3">
                 <div class="card-body">
@@ -53,12 +54,12 @@
 <script>
     var ctx = document.getElementById('revenueChart').getContext('2d');
     var revenueChart = new Chart(ctx, {
-        type: 'bar', // Dùng 'bar' hoặc 'line' tùy ý
+        type: 'bar',
         data: {
             labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
             datasets: [{
                 label: 'Doanh thu (VNĐ)',
-                data: @Html.Raw(Json.Encode(ViewBag.DoanhThuTheoThang)), // Lấy dữ liệu từ ViewBag
+                data: @Html.Raw(Json.Encode(ViewBag.DoanhThuTheoThang)),
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1
@@ -70,7 +71,16 @@
                 y: {
                     beginAtZero: true
                 }
+            },
+            onClick: function (event, item) {
+                if (item.length > 0) {
+                    // Lấy tháng từ cột người dùng nhấn
+                    var month = item[0]._index + 1; // _index từ 0 nên cộng thêm 1 để lấy tháng chính xác
+                    // Chuyển hướng tới URL với tham số tháng
+                    window.location.href = '@Url.Action("DoanhThuNgay", "DoanhThu", new { thang = "__thang__" })'.replace("__thang__", month);
+                }
             }
         }
     });
 </script>
+

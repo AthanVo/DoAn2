@@ -2411,6 +2411,7 @@
     <Content Include="Areas\Admin\Views\KhachHang\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Suatchieu\Details.cshtml" />
     <Content Include="Areas\Admin\Views\DoanhThu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DoanhThu\DoanhThuNgay.cshtml" />
     <None Include="Models\Data.dbml.layout">
       <DependentUpon>Data.dbml</DependentUpon>
     </None>

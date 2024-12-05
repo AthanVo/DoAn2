@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Doanh Thu Theo Ngày";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h2>Doanh Thu Tháng @ViewBag.ThangHienTai</h2>
+
+    <!-- Các nút chọn tháng -->
+    <div>
+        <h4>Chọn Tháng</h4>
+        <div class="btn-group">
+            @for (int i = 1; i <= 12; i++)
+            {
+                <a href="@Url.Action("DoanhThuNgay", new { thang = i })" class="btn @((i == ViewBag.ThangHienTai) ? "btn-primary" : "btn-secondary")">
+                    Tháng @i
+                </a>
+            }
+        </div>
+    </div>
+
+    <!-- Bảng hiển thị doanh thu theo ngày -->
+    <div>
+        <h3>Doanh Thu Tháng @ViewBag.ThangHienTai</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Ngày</th>
+                    <th>Doanh Thu (VNĐ)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.Ngay != null && ViewBag.Ngay.Count > 0)
+                {
+                    for (int i = 0; i < ViewBag.Ngay.Count; i++)
+                    {
+                        <tr>
+                            <td>Ngày @ViewBag.Ngay[i]</td>
+                            <td>@ViewBag.DoanhThuTheoNgay[i].ToString("C0", new System.Globalization.CultureInfo("vi-VN"))</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="2">Không có dữ liệu doanh thu cho tháng này.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Biểu đồ doanh thu theo ngày -->
+    <div>
+        <h3>Biểu Đồ Doanh Thu Theo Ngày</h3>
+        <canvas id="dailyRevenueChart"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Dữ liệu doanh thu theo ngày
+    var dailyRevenueData = @Html.Raw(Json.Encode(ViewBag.DoanhThuTheoNgay));
+    var dailyLabels = @Html.Raw(Json.Encode(ViewBag.Ngay));
+
+    // Biểu đồ doanh thu theo ngày
+    var dailyCtx = document.getElementById('dailyRevenueChart').getContext('2d');
+    var dailyRevenueChart = new Chart(dailyCtx, {
+        type: 'line',  // Biểu đồ đường (line chart)
+        data: {
+            labels: dailyLabels,  // Các ngày trong tháng
+            datasets: [{
+                label: 'Doanh thu theo ngày (VNĐ)',
+                data: dailyRevenueData,  // Doanh thu của từng ngày
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
