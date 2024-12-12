@@ -73,7 +73,6 @@
       <Column Name="loai_ghe_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="rap_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Ghe_ngoi_Dat_cho" Member="Dat_chos" ThisKey="ghe_id" OtherKey="ghe_id" Type="Dat_cho" />
-      <Association Name="Ghe_ngoi_Dat_ve" Member="Dat_ves" ThisKey="ghe_id" OtherKey="ghe_id" Type="Dat_ve" />
       <Association Name="Ghe_ngoi_Chi_tiet_dat_ve" Member="Chi_tiet_dat_ves" ThisKey="ghe_id" OtherKey="ghe_id" Type="Chi_tiet_dat_ve" />
       <Association Name="Loai_ghe_Ghe_ngoi" Member="Loai_ghe" ThisKey="loai_ghe_id" OtherKey="loai_ghe_id" Type="Loai_ghe" IsForeignKey="true" />
       <Association Name="Man_hinh_chieu_Ghe_ngoi" Member="Man_hinh_chieu" ThisKey="man_hinh_id" OtherKey="man_hinh_id" Type="Man_hinh_chieu" IsForeignKey="true" />
@@ -107,20 +106,6 @@
       <Association Name="Rap_chieu_phim_Suat_chieu" Member="Rap_chieu_phim" ThisKey="rap_id" OtherKey="rap_id" Type="Rap_chieu_phim" IsForeignKey="true" />
       <Association Name="Suat_chieu_Suat_chieu" Member="Suat_chieu1" ThisKey="suat_chieu_id" OtherKey="suat_chieu_id" Type="Suat_chieu" IsForeignKey="true" />
       <Association Name="Phim_Suat_chieu" Member="Phim" ThisKey="phim_id" OtherKey="phim_id" Type="Phim" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Dat_ve" Member="Dat_ves">
-    <Type Name="Dat_ve">
-      <Column Name="dat_ve_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="nguoi_dung_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="suat_chieu_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="thoi_gian_dat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="tong_tien" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="ghe_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Dat_ve_Chi_tiet_dat_ve" Member="Chi_tiet_dat_ves" ThisKey="dat_ve_id" OtherKey="dat_ve_id" Type="Chi_tiet_dat_ve" />
-      <Association Name="Suat_chieu_Dat_ve" Member="Suat_chieu" ThisKey="suat_chieu_id" OtherKey="suat_chieu_id" Type="Suat_chieu" IsForeignKey="true" />
-      <Association Name="Ghe_ngoi_Dat_ve" Member="Ghe_ngoi" ThisKey="ghe_id" OtherKey="ghe_id" Type="Ghe_ngoi" IsForeignKey="true" />
-      <Association Name="Nguoi_dung_Dat_ve" Member="Nguoi_dung" ThisKey="nguoi_dung_id" OtherKey="nguoi_dung_id" Type="Nguoi_dung" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Chi_tiet_dat_ve" Member="Chi_tiet_dat_ves">
@@ -182,6 +167,18 @@
       <Association Name="Phim_Suat_chieu" Member="Suat_chieus" ThisKey="phim_id" OtherKey="phim_id" Type="Suat_chieu" />
       <Association Name="Dien_vien_Phim" Member="Dien_vien" ThisKey="dien_vien_id" OtherKey="dien_vien_id" Type="Dien_vien" IsForeignKey="true" />
       <Association Name="Quoc_gia_Phim" Member="Quoc_gia" ThisKey="quoc_gia_id" OtherKey="quoc_gia_id" Type="Quoc_gia" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Dat_ve" Member="Dat_ves">
+    <Type Name="Dat_ve">
+      <Column Name="dat_ve_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nguoi_dung_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="suat_chieu_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thoi_gian_dat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tong_tien" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Association Name="Dat_ve_Chi_tiet_dat_ve" Member="Chi_tiet_dat_ves" ThisKey="dat_ve_id" OtherKey="dat_ve_id" Type="Chi_tiet_dat_ve" />
+      <Association Name="Nguoi_dung_Dat_ve" Member="Nguoi_dung" ThisKey="nguoi_dung_id" OtherKey="nguoi_dung_id" Type="Nguoi_dung" IsForeignKey="true" />
+      <Association Name="Suat_chieu_Dat_ve" Member="Suat_chieu" ThisKey="suat_chieu_id" OtherKey="suat_chieu_id" Type="Suat_chieu" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

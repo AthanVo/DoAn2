@@ -14,13 +14,11 @@ namespace RapChieuPhim.Controllers
     {
         DataDataContext data = new DataDataContext("DESKTOP-GIKAS1S\\MSSQLSERVER01");
 
-        // GET: Booking
         public ActionResult Index()
         {
-            var datChoList = data.Dat_chos.ToList(); // Lấy dữ liệu từ bảng Dat_cho
-            return View(datChoList); // Truyền vào view dưới dạng danh sách Dat_cho
+            var datChoList = data.Dat_chos.ToList();
+            return View(datChoList);
         }
-
 
         public ActionResult Datve(int filmId)
         {
@@ -40,27 +38,22 @@ namespace RapChieuPhim.Controllers
                 return HttpNotFound("Không tìm thấy thông tin về suất chiếu.");
             }
 
-            // Truy vấn tất cả các ghế của suất chiếu từ bảng Dat_cho
             var gheTrong = data.Dat_chos
                 .Where(dc => dc.suat_chieu_id == suatchieuId)
-                .ToList(); // Đảm bảo trả về danh sách Dat_cho
+                .ToList();
 
             ViewBag.FilmId = filmId;
             ViewBag.SuatChieuId = suatchieuId;
-            return View(gheTrong); // Truyền danh sách Dat_cho vào view
+            return View(gheTrong);
         }
 
-        // Chuẩn bị nội dung email
         private string PrepareEmailContent(Dat_ve datVe, string selectedSeats)
         {
             string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/neworder.html"));
 
-            // Giả sử selectedSeats chứa các id của ghế đã chọn, tách và chuyển thành danh sách id
             var seatIds = selectedSeats.Split(',').Select(int.Parse).ToList();
-            // Lấy tên ghế (số ghế) dựa trên các id ghế
             var seatNames = data.Ghe_ngois.Where(g => seatIds.Contains(g.ghe_id)).Select(g => g.so_ghe).ToList();
 
-            // Replace các giá trị trong template
             content = content.Replace("{{Name}}", datVe.Suat_chieu.Phim.ten_phim);
             content = content.Replace("{{Date}}", DateTime.Now.ToString("dd/MM/yyyy"));
             content = content.Replace("{{Amount}}", seatIds.Count.ToString());
@@ -69,60 +62,45 @@ namespace RapChieuPhim.Controllers
             content = content.Replace("{{Email}}", datVe.Nguoi_dung.email);
             content = content.Replace("{{Giave}}", datVe.tong_tien.ToString());
             content = content.Replace("{{Mave}}", datVe.dat_ve_id.ToString());
-            content = content.Replace("{{Suatchieu}}",datVe.Suat_chieu.gio_bat_dau.ToString());
+            content = content.Replace("{{Suatchieu}}", datVe.Suat_chieu.gio_bat_dau.ToString());
             content = content.Replace("{{Tenrap}}", datVe.Suat_chieu.Rap_chieu_phim.ten_rap);
-            // Dùng string.Join để nối các số ghế lại
             content = content.Replace("{{Ghengoi}}", string.Join(", ", seatNames));
 
             return content;
         }
-
 
         private string GetCustomerEmail(Dat_ve datVe)
         {
             return datVe.Nguoi_dung.email;
         }
 
-
         public ActionResult Chitietdatve(int datVeId)
         {
-            // Lấy thông tin vé đặt
-            var datVe = data.Dat_ves
-                                .FirstOrDefault(dv => dv.dat_ve_id == datVeId);
+            var datVe = data.Dat_ves.FirstOrDefault(dv => dv.dat_ve_id == datVeId);
 
             if (datVe == null)
             {
                 return HttpNotFound("Không tìm thấy thông tin đặt vé.");
             }
 
-            // Lấy thông tin người dùng
-            var nguoiDung = data.Nguoi_dungs.FirstOrDefault(nd => nd.nguoi_dung_id == datVe.nguoi_dung_id);
-
-            // Lấy danh sách ghế đã đặt thông qua bảng Chi_tiet_dat_ve
             var gheList = data.Chi_tiet_dat_ves
-                              .Where(ct => ct.dat_ve_id == datVeId)  // Lấy các ghế liên kết với dat_ve_id
-                              .Select(ct => ct.Ghe_ngoi.so_ghe)     // Lấy số ghế từ bảng Ghe_ngoi
+                              .Where(ct => ct.dat_ve_id == datVeId)
+                              .Select(ct => ct.Ghe_ngoi.so_ghe)
                               .ToList();
 
-            // Tính số lượng ghế
-            ViewBag.GheCount = gheList.Count(); // Truyền số lượng ghế vào ViewBag
+            ViewBag.GheCount = gheList.Count();
+            string gheString = gheList.Any() ? string.Join(", ", gheList) : "Chưa có ghế nào";
 
-            // Chỉ lấy ghế đầu tiên nếu có ghế đã đặt
-            string gheString = gheList.Any() ? string.Join(", ", gheList) : "Chưa có ghế nào";  // Trả về "Chưa có ghế nào" nếu không có ghế
-
-            // Lấy thông tin phim và suất chiếu
             var suatChieu = data.Suat_chieus.FirstOrDefault(sc => sc.suat_chieu_id == datVe.suat_chieu_id);
-            var phim = suatChieu?.Phim; // Đảm bảo thông tin phim không null
+            var phim = suatChieu?.Phim;
 
-            // Truyền dữ liệu sang View
-            ViewBag.NguoiDung = nguoiDung;
-            ViewBag.GheList = gheString;  // Chỉ truyền ghế đại diện
+            ViewBag.NguoiDung = data.Nguoi_dungs.FirstOrDefault(nd => nd.nguoi_dung_id == datVe.nguoi_dung_id);
+            ViewBag.GheList = gheString;
             ViewBag.SuatChieu = suatChieu;
             ViewBag.Phim = phim;
 
             return View(datVe);
         }
-
 
         public ActionResult Lichsu()
         {
@@ -133,45 +111,39 @@ namespace RapChieuPhim.Controllers
 
             int userId = (int)Session["Nguoi_dung_id"];
 
-            // Lấy danh sách đặt vé duy nhất
             var bookings = data.Dat_ves
                 .Where(dv => dv.nguoi_dung_id == userId)
-                .GroupBy(dv => dv.dat_ve_id) // Nhóm theo ID đặt vé
-                .Select(g => g.FirstOrDefault()) // Chỉ lấy một bản ghi đại diện cho mỗi ID
+                .GroupBy(dv => dv.dat_ve_id)
+                .Select(g => g.FirstOrDefault())
                 .ToList();
 
             return View(bookings);
         }
 
-
         [HttpPost]
-        public ActionResult Thanhtoan(string selectedSeats, decimal totalPrice, int filmId, int suatchieuId)
+        public ActionResult Thanhtoan(string selectedSeats, decimal totalPrice, int filmId, int suatchieuId, decimal? finalPrice)
         {
             PaymentInformationModel model = new PaymentInformationModel
             {
                 SelectedSeats = selectedSeats,
-                Amount = totalPrice,
+                Amount = finalPrice ?? totalPrice, // Nếu finalPrice không có, sử dụng giá gốc
                 FilmId = filmId,
                 SuatChieuId = suatchieuId,
-
             };
             return View(model);
         }
 
-        //Thanh toán vnpay
+
         [HttpPost]
-        public JsonResult UrlPayment(int TypePaymentVN, int suatchieuId, decimal totalPrice, int filmId, string selectedSeats)
+        public JsonResult UrlPayment(int TypePaymentVN, int suatchieuId, decimal finalPrice, int filmId, string selectedSeats)
         {
             try
             {
-                //string vnp_Returnurl = ConfigurationManager.AppSettings["vnp_Returnurl"];
-                string vnp_Returnurl = $"{ConfigurationManager.AppSettings["vnp_Returnurl"]}?suatchieuId={suatchieuId}&filmId={filmId}&selectedSeats={selectedSeats}&totalPrice={totalPrice}";
-
+                // Tạo URL trả về từ VNPay
+                string vnp_Returnurl = $"{ConfigurationManager.AppSettings["vnp_Returnurl"]}?suatchieuId={suatchieuId}&filmId={filmId}&selectedSeats={selectedSeats}&totalPrice={finalPrice}";
                 string vnp_Url = ConfigurationManager.AppSettings["vnp_Url"];
                 string vnp_TmnCode = ConfigurationManager.AppSettings["vnp_TmnCode"];
-                // Đảm bảo bạn lấy mã này từ cấu hình và nó khớp với mã trong email hoặc tài khoản VNPAY của bạn
                 string vnp_HashSecret = ConfigurationManager.AppSettings["vnp_HashSecret"];
-
 
                 if (string.IsNullOrEmpty(vnp_Returnurl) || string.IsNullOrEmpty(vnp_Url) ||
                     string.IsNullOrEmpty(vnp_TmnCode) || string.IsNullOrEmpty(vnp_HashSecret))
@@ -180,14 +152,14 @@ namespace RapChieuPhim.Controllers
                 }
 
                 VnPayLibrary vnpay = new VnPayLibrary();
-                long Price = (long)totalPrice * 100; // Sử dụng `totalPrice` truyền vào từ ConfirmBooking
+                long Price = (long)(finalPrice * 100); // Giá cần nhân 100 để tính theo VNPay
 
                 vnpay.AddRequestData("vnp_Version", VnPayLibrary.VERSION);
                 vnpay.AddRequestData("vnp_Command", "pay");
                 vnpay.AddRequestData("vnp_TmnCode", vnp_TmnCode);
                 vnpay.AddRequestData("vnp_Amount", Price.ToString());
 
-                // Xác định mã ngân hàng dựa trên TypePaymentVN
+                // Thêm mã ngân hàng dựa trên phương thức thanh toán
                 if (TypePaymentVN == 1)
                 {
                     vnpay.AddRequestData("vnp_BankCode", "VNPAYQR");
@@ -214,12 +186,11 @@ namespace RapChieuPhim.Controllers
                 vnpay.AddRequestData("vnp_OrderType", "other");
                 vnpay.AddRequestData("vnp_ReturnUrl", vnp_Returnurl);
 
-                //vnpay.AddRequestData("vnp_TxnRef", uniqueTxnRef);
                 string uniqueTxnRef = $"{suatchieuId}_{DateTime.Now.Ticks}";
                 vnpay.AddRequestData("vnp_TxnRef", uniqueTxnRef);
 
+                // Tạo URL thanh toán
                 string urlPayment = vnpay.CreateRequestUrl(vnp_Url, vnp_HashSecret);
-                Console.WriteLine("Generated Payment URL: " + urlPayment); // Hoặc dùng Debug.WriteLine
                 return Json(new { url = urlPayment }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -228,8 +199,9 @@ namespace RapChieuPhim.Controllers
             }
         }
 
+
         [HttpPost]
-        public ActionResult ConfirmBooking(int filmId, int suatchieuId, string selectedSeats)
+        public ActionResult ConfirmBooking(int filmId, int suatchieuId, string selectedSeats, decimal finalPrice)
         {
             if (string.IsNullOrEmpty(selectedSeats))
             {
@@ -237,10 +209,6 @@ namespace RapChieuPhim.Controllers
             }
 
             var seatIds = selectedSeats.Split(',').Select(int.Parse).ToList();
-
-            decimal totalPrice = 0; // Tổng tiền
-
-            // Kiểm tra trùng lặp đặt vé
             var existingBookings = data.Dat_chos.Where(dc => dc.suat_chieu_id == suatchieuId && seatIds.Contains(dc.ghe_id) && dc.da_dat == true).ToList();
 
             if (existingBookings.Any())
@@ -248,7 +216,6 @@ namespace RapChieuPhim.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Conflict, "Một hoặc nhiều ghế đã được đặt.");
             }
 
-            // Lấy ID của người dùng từ session
             if (Session["Nguoi_dung_id"] == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "Bạn phải đăng nhập để đặt vé.");
@@ -256,123 +223,108 @@ namespace RapChieuPhim.Controllers
 
             int nguoiDungId = (int)Session["Nguoi_dung_id"];
 
-            Dat_ve datVe = null;
-
-            // Cập nhật trạng thái ghế đã đặt và tính tổng tiền cho tất cả ghế đã chọn
+            // Cập nhật trạng thái ghế
             foreach (var seatId in seatIds)
             {
                 var datCho = data.Dat_chos.FirstOrDefault(dc => dc.ghe_id == seatId && dc.suat_chieu_id == suatchieuId);
                 if (datCho != null)
                 {
-                    datCho.da_dat = true; // Cập nhật trạng thái ghế đã đặt
-                    totalPrice += Convert.ToDecimal(datCho.Ghe_ngoi.Loai_ghe.gia_ve);
+                    datCho.da_dat = true;
                 }
             }
 
-            // Lưu các thay đổi vào cơ sở dữ liệu (cập nhật thông tin ghế và trạng thái)
             data.SubmitChanges();
 
-            // Lưu thông tin đặt vé chung (chỉ lưu 1 lần sau khi tất cả ghế đã được đặt)
-            datVe = new Dat_ve
+            // Lưu thông tin đặt vé
+            var datVe = new Dat_ve
             {
                 nguoi_dung_id = nguoiDungId,
                 suat_chieu_id = suatchieuId,
                 thoi_gian_dat = DateTime.Now,
-                tong_tien = totalPrice
+                tong_tien = finalPrice // Tổng tiền sau giảm giá
             };
 
             data.Dat_ves.InsertOnSubmit(datVe);
             data.SubmitChanges();
 
-            // Lưu các chi tiết đặt vé (với tất cả các ghế đã chọn)
+            // Lưu thông tin chi tiết ghế
             foreach (var seatId in seatIds)
             {
                 var chiTietDatVe = new Chi_tiet_dat_ve
                 {
                     dat_ve_id = datVe.dat_ve_id,
                     ghe_id = seatId,
-                    gia_ve = totalPrice // Giá vé có thể tính lại sau khi lưu tất cả
+                    gia_ve = finalPrice / seatIds.Count
                 };
                 data.Chi_tiet_dat_ves.InsertOnSubmit(chiTietDatVe);
             }
 
-            // Lưu lại vào cơ sở dữ liệu
             data.SubmitChanges();
 
-            // Gửi email chỉ một lần sau khi tất cả các ghế đã được đặt và thông tin đã lưu vào cơ sở dữ liệu
             var content = PrepareEmailContent(datVe, selectedSeats);
             var customerEmail = GetCustomerEmail(datVe);
             new MailHelper().SendMail(customerEmail, "Xác nhận đặt vé", content, datVe.Nguoi_dung.ho_ten);
 
-            // Chuyển hướng người dùng đến trang chi tiết đặt vé
             return RedirectToAction("Chitietdatve", new { datVeId = datVe.dat_ve_id });
         }
 
-
-
-
-        public ActionResult VnpayReturn(int? suatchieuId, int? filmId, string selectedSeats, decimal? totalPrice)
+        public ActionResult VnpayReturn(int? suatchieuId, int? filmId, string selectedSeats, decimal? totalPrice, decimal? finalPrice = null)
         {
-            if (Request.QueryString.Count > 0)
+            if (!suatchieuId.HasValue || !filmId.HasValue || string.IsNullOrEmpty(selectedSeats) || !totalPrice.HasValue)
             {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Thiếu thông tin thanh toán.");
+            }
+
+            try
+            {
+                decimal amount = finalPrice ?? totalPrice.Value;
+
+                // Kiểm tra chữ ký bảo mật từ VNPay
                 string vnp_HashSecret = ConfigurationManager.AppSettings["vnp_HashSecret"];
                 var vnpayData = Request.QueryString;
                 VnPayLibrary vnpay = new VnPayLibrary();
 
-                foreach (string s in vnpayData)
+                foreach (string key in vnpayData)
                 {
-                    if (!string.IsNullOrEmpty(s) && s.StartsWith("vnp_"))
+                    if (!string.IsNullOrEmpty(key) && key.StartsWith("vnp_"))
                     {
-                        vnpay.AddResponseData(s, vnpayData[s]);
+                        vnpay.AddResponseData(key, vnpayData[key]);
                     }
                 }
 
                 string vnp_ResponseCode = vnpay.GetResponseData("vnp_ResponseCode");
                 string vnp_TransactionStatus = vnpay.GetResponseData("vnp_TransactionStatus");
-                string vnp_SecureHash = Request.QueryString["vnp_SecureHash"];
+                string vnp_SecureHash = vnpay.GetResponseData("vnp_SecureHash");
                 bool checkSignature = vnpay.ValidateSignature(vnp_SecureHash, vnp_HashSecret);
 
+                // Giao dịch thành công
                 if (checkSignature && vnp_ResponseCode == "00" && vnp_TransactionStatus == "00")
                 {
-                    if (Session["Nguoi_dung_id"] == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "Bạn phải đăng nhập để đặt vé.");
-                    }
-
                     int nguoiDungId = (int)Session["Nguoi_dung_id"];
                     var seatIds = selectedSeats.Split(',').Select(int.Parse).ToList();
-                    decimal totalTransactionPrice = 0; // Khởi tạo biến tổng tiền
-                    Dat_ve datVe = null; // Khởi tạo ở ngoài vòng lặp
-                    // Cập nhật trạng thái ghế và tính tổng tiền
-                    foreach (var seatId in seatIds)
-                    {
-                        var datCho = data.Dat_chos.FirstOrDefault(dc => dc.suat_chieu_id == suatchieuId && dc.ghe_id == seatId);
-                        if (datCho != null)
-                        {
-                            datCho.da_dat = true; // Đánh dấu ghế đã đặt
-                            totalTransactionPrice += Convert.ToDecimal(datCho.Ghe_ngoi.Loai_ghe.gia_ve); // Tính tổng tiền
-                        }
 
-                        // Lưu chi tiết đặt vé cho từng ghế (không cần tạo Dat_ve trong vòng lặp)
-                        var chiTietDatVe = new Chi_tiet_dat_ve
-                        {
-                            ghe_id = seatId,
-                            gia_ve = totalTransactionPrice // Giá vé có thể tính lại sau khi lưu tất cả
-                        };
-                        data.Chi_tiet_dat_ves.InsertOnSubmit(chiTietDatVe);
-                    }
-
-                    // Lưu thông tin đặt vé chung (chỉ lưu 1 lần sau khi tất cả ghế đã được xử lý)
-                    datVe = new Dat_ve
+                    var datVe = new Dat_ve
                     {
                         nguoi_dung_id = nguoiDungId,
                         suat_chieu_id = suatchieuId,
                         thoi_gian_dat = DateTime.Now,
-                        tong_tien = totalTransactionPrice // Sử dụng tổng tiền sau khi tính cho tất cả ghế
+                        tong_tien = amount
                     };
-                    data.Dat_ves.InsertOnSubmit(datVe);
 
-                    // Lưu lại vào cơ sở dữ liệu (cập nhật trạng thái và các chi tiết)
+                    data.Dat_ves.InsertOnSubmit(datVe);
+                    data.SubmitChanges();
+
+                    foreach (var seatId in seatIds)
+                    {
+                        var chiTietDatVe = new Chi_tiet_dat_ve
+                        {
+                            dat_ve_id = datVe.dat_ve_id,
+                            ghe_id = seatId,
+                            gia_ve = amount / seatIds.Count
+                        };
+                        data.Chi_tiet_dat_ves.InsertOnSubmit(chiTietDatVe);
+                    }
+
                     data.SubmitChanges();
 
                     // Gửi email chỉ một lần sau khi tất cả ghế đã được đặt và thông tin đã lưu vào cơ sở dữ liệu
@@ -382,26 +334,34 @@ namespace RapChieuPhim.Controllers
 
                     ViewBag.Message = "Giao dịch thành công!";
                     ViewBag.OrderId = datVe.dat_ve_id;
+
                 }
                 else
                 {
-                    ViewBag.Message = "Xin lỗi, có lỗi xảy ra trong quá trình thanh toán.";
+                    ViewBag.Message = "Xin lỗi, giao dịch không thành công. Vui lòng thử lại.";
                 }
             }
+            catch (Exception ex)
+            {
+                ViewBag.Message = $"Đã xảy ra lỗi trong quá trình xử lý: {ex.Message}";
+            }
+
             return View();
         }
+
+
+
+
 
         public JsonResult ApplyVoucher(string voucherCode, decimal originalPrice, string appliedVoucher)
         {
             try
             {
-                // Kiểm tra nếu đã có mã giảm giá được áp dụng
                 if (!string.IsNullOrEmpty(appliedVoucher))
                 {
                     return Json(new { success = false, message = "Bạn chỉ có thể áp dụng một mã giảm giá." }, JsonRequestBehavior.AllowGet);
                 }
 
-                // Tìm mã giảm giá dựa vào mã voucher
                 var voucher = data.Khuyen_mais.FirstOrDefault(v =>
                     v.ma_giam_gia == voucherCode &&
                     v.ngay_bat_dau <= DateTime.Now &&
@@ -414,9 +374,8 @@ namespace RapChieuPhim.Controllers
                     return Json(new { success = false, message = "Mã khuyến mãi không hợp lệ hoặc đã hết hạn." }, JsonRequestBehavior.AllowGet);
                 }
 
-                // Tính giá sau khi giảm
+                // Tính tổng tiền sau khi giảm giá
                 decimal finalPrice = originalPrice * (1 - (decimal)voucher.phan_tram_giam / 100m);
-
 
                 return Json(new { success = true, finalPrice = finalPrice, appliedVoucher = voucherCode }, JsonRequestBehavior.AllowGet);
             }
@@ -425,9 +384,5 @@ namespace RapChieuPhim.Controllers
                 return Json(new { success = false, message = "Đã xảy ra lỗi: " + ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
-
-
-
     }
 }
-

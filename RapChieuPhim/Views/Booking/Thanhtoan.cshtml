@@ -78,7 +78,7 @@
             <input type="hidden" name="filmId" value="@Model.FilmId" />
             <input type="hidden" name="suatchieuId" value="@Model.SuatChieuId" />
             <input type="hidden" name="selectedSeats" value="@Model.SelectedSeats" />
-            <input type="hidden" id="finalPriceInput" name="totalPrice" value="@Model.Amount" />
+            <input type="hidden" id="finalPriceInput" name="finalPrice" value="@Model.Amount" />
 
             <!-- Chọn phương thức thanh toán -->
             <div class="form-group">
@@ -161,18 +161,24 @@
 
         document.getElementById('paymentForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
             const filmId = document.querySelector('input[name="filmId"]').value;
             const suatChieuId = document.querySelector('input[name="suatchieuId"]').value;
             const selectedSeats = document.querySelector('input[name="selectedSeats"]').value;
-            const totalPrice = document.querySelector('input[name="totalPrice"]').value;
+            const finalPrice = document.getElementById('finalPriceInput').value;
+
+            if (!paymentMethod) {
+                alert('Vui lòng chọn phương thức thanh toán!');
+                return;
+            }
 
             const requestData = {
                 TypePaymentVN: paymentMethod,
-                filmId: filmId,
-                suatchieuId: suatChieuId,
+                filmId: parseInt(filmId),
+                suatchieuId: parseInt(suatChieuId),
                 selectedSeats: selectedSeats,
-                totalPrice: totalPrice,
+                finalPrice: parseFloat(finalPrice)
             };
 
             fetch('/Booking/UrlPayment', {
@@ -183,7 +189,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.url) {
-                        window.location.href = data.url;
+                        window.location.href = data.url; // Chuyển hướng đến URL VNPay
                     } else {
                         alert(data.error || 'Có lỗi xảy ra khi tạo liên kết thanh toán.');
                     }
@@ -193,6 +199,7 @@
                     alert('Có lỗi xảy ra. Vui lòng thử lại.');
                 });
         });
+
 
     </script>
 </body>

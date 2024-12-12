@@ -2404,7 +2404,6 @@
     <Content Include="Areas\Admin\Views\DatVe\Details.cshtml" />
     <Content Include="Areas\Admin\Views\DatVe\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\DatVe\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietDatVe\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ChiTietDatVe\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ChiTietDatVe\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ChiTietDatVe\Delete.cshtml" />
@@ -2412,6 +2411,7 @@
     <Content Include="Areas\Admin\Views\Suatchieu\Details.cshtml" />
     <Content Include="Areas\Admin\Views\DoanhThu\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DoanhThu\DoanhThuNgay.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietDatVe\Index.cshtml" />
     <None Include="Models\Data.dbml.layout">
       <DependentUpon>Data.dbml</DependentUpon>
     </None>

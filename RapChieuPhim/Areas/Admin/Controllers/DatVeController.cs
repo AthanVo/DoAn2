@@ -53,7 +53,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                     existingDatVe.nguoi_dung_id = datVe.nguoi_dung_id;
                     existingDatVe.suat_chieu_id = datVe.suat_chieu_id;
                     existingDatVe.thoi_gian_dat = datVe.thoi_gian_dat;
-                    existingDatVe.ghe_id = datVe.ghe_id;
                     existingDatVe.tong_tien = datVe.tong_tien;
                     // Update other fields as needed
                     data.SubmitChanges();
