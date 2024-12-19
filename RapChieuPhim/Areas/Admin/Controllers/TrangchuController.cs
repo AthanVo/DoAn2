@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using RapChieuPhim.Filters;
 
 namespace RapChieuPhim.Areas.Admin.Views.Controllers
 {
@@ -10,6 +11,7 @@ namespace RapChieuPhim.Areas.Admin.Views.Controllers
     {
         // GET: Admin/Trangchu
         DataDataContext data = new DataDataContext("DESKTOP-GIKAS1S\\MSSQLSERVER01");
+        [AuthorizeAdmin]
         public ActionResult Index()
         {
             // Tính toán tổng doanh thu trong năm (Ví dụ)
