@@ -74,6 +74,7 @@
       <Column Name="rap_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Ghe_ngoi_Dat_cho" Member="Dat_chos" ThisKey="ghe_id" OtherKey="ghe_id" Type="Dat_cho" />
       <Association Name="Ghe_ngoi_Chi_tiet_dat_ve" Member="Chi_tiet_dat_ves" ThisKey="ghe_id" OtherKey="ghe_id" Type="Chi_tiet_dat_ve" />
+      <Association Name="Ghe_ngoi_Giu_cho" Member="Giu_chos" ThisKey="ghe_id" OtherKey="ghe_id" Type="Giu_cho" />
       <Association Name="Loai_ghe_Ghe_ngoi" Member="Loai_ghe" ThisKey="loai_ghe_id" OtherKey="loai_ghe_id" Type="Loai_ghe" IsForeignKey="true" />
       <Association Name="Man_hinh_chieu_Ghe_ngoi" Member="Man_hinh_chieu" ThisKey="man_hinh_id" OtherKey="man_hinh_id" Type="Man_hinh_chieu" IsForeignKey="true" />
       <Association Name="Rap_chieu_phim_Ghe_ngoi" Member="Rap_chieu_phim" ThisKey="rap_id" OtherKey="rap_id" Type="Rap_chieu_phim" IsForeignKey="true" />
@@ -102,6 +103,7 @@
       <Association Name="Suat_chieu_Dat_cho" Member="Dat_chos" ThisKey="suat_chieu_id" OtherKey="suat_chieu_id" Type="Dat_cho" />
       <Association Name="Suat_chieu_Suat_chieu" Member="Suat_chieu2" ThisKey="suat_chieu_id" OtherKey="suat_chieu_id" Type="Suat_chieu" Cardinality="One" />
       <Association Name="Suat_chieu_Dat_ve" Member="Dat_ves" ThisKey="suat_chieu_id" OtherKey="suat_chieu_id" Type="Dat_ve" />
+      <Association Name="Suat_chieu_Giu_cho" Member="Giu_chos" ThisKey="suat_chieu_id" OtherKey="suat_chieu_id" Type="Giu_cho" />
       <Association Name="Man_hinh_chieu_Suat_chieu" Member="Man_hinh_chieu" ThisKey="man_hinh_id" OtherKey="man_hinh_id" Type="Man_hinh_chieu" IsForeignKey="true" />
       <Association Name="Rap_chieu_phim_Suat_chieu" Member="Rap_chieu_phim" ThisKey="rap_id" OtherKey="rap_id" Type="Rap_chieu_phim" IsForeignKey="true" />
       <Association Name="Suat_chieu_Suat_chieu" Member="Suat_chieu1" ThisKey="suat_chieu_id" OtherKey="suat_chieu_id" Type="Suat_chieu" IsForeignKey="true" />
@@ -131,6 +133,7 @@
       <Column Name="reset_token_expiration" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="role" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Nguoi_dung_Dat_ve" Member="Dat_ves" ThisKey="nguoi_dung_id" OtherKey="nguoi_dung_id" Type="Dat_ve" />
+      <Association Name="Nguoi_dung_Giu_cho" Member="Giu_chos" ThisKey="nguoi_dung_id" OtherKey="nguoi_dung_id" Type="Giu_cho" />
     </Type>
   </Table>
   <Table Name="dbo.Khuyen_mai" Member="Khuyen_mais">
@@ -179,6 +182,19 @@
       <Association Name="Dat_ve_Chi_tiet_dat_ve" Member="Chi_tiet_dat_ves" ThisKey="dat_ve_id" OtherKey="dat_ve_id" Type="Chi_tiet_dat_ve" />
       <Association Name="Nguoi_dung_Dat_ve" Member="Nguoi_dung" ThisKey="nguoi_dung_id" OtherKey="nguoi_dung_id" Type="Nguoi_dung" IsForeignKey="true" />
       <Association Name="Suat_chieu_Dat_ve" Member="Suat_chieu" ThisKey="suat_chieu_id" OtherKey="suat_chieu_id" Type="Suat_chieu" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Giu_cho" Member="Giu_chos">
+    <Type Name="Giu_cho">
+      <Column Name="giu_cho_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ghe_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="suat_chieu_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nguoi_dung_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="thoi_gian_bat_dau" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="thoi_gian_het_han" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Ghe_ngoi_Giu_cho" Member="Ghe_ngoi" ThisKey="ghe_id" OtherKey="ghe_id" Type="Ghe_ngoi" IsForeignKey="true" />
+      <Association Name="Nguoi_dung_Giu_cho" Member="Nguoi_dung" ThisKey="nguoi_dung_id" OtherKey="nguoi_dung_id" Type="Nguoi_dung" IsForeignKey="true" />
+      <Association Name="Suat_chieu_Giu_cho" Member="Suat_chieu" ThisKey="suat_chieu_id" OtherKey="suat_chieu_id" Type="Suat_chieu" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

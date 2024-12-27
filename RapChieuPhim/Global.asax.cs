@@ -28,6 +28,7 @@ namespace RapChieuPhim
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+
         }
     }
 }

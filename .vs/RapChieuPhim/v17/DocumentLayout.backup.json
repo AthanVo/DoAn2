@@ -3,52 +3,24 @@
   "WorkspaceRootPath": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|d:\\rapchieuphim\\rapchieuphim_doan\\doan2fn\\rapchieuphim\\filters\\authorizeadminattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\filters\\authorizeadminattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|d:\\rapchieuphim\\rapchieuphim_doan\\doan2fn\\rapchieuphim\\areas\\admin\\controllers\\trangchucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\areas\\admin\\controllers\\trangchucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|d:\\rapchieuphim\\rapchieuphim_doan\\doan2fn\\rapchieuphim\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|d:\\rapchieuphim\\rapchieuphim_doan\\doan2fn\\rapchieuphim\\areas\\admin\\views\\trangchu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\areas\\admin\\views\\trangchu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|d:\\rapchieuphim\\rapchieuphim_doan\\doan2fn\\rapchieuphim\\views\\booking\\datghe.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\views\\booking\\datghe.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|d:\\rapchieuphim\\rapchieuphim_doan\\doan2fn\\rapchieuphim\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\rapchieuphim\\views\\booking\\thanhtoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\views\\booking\\thanhtoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|d:\\rapchieuphim\\rapchieuphim_doan\\doan2fn\\rapchieuphim\\controllers\\bookingapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\controllers\\bookingapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\rapchieuphim\\areas\\admin\\controllers\\datvecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\areas\\admin\\controllers\\datvecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|d:\\rapchieuphim\\rapchieuphim_doan\\doan2fn\\rapchieuphim\\models\\datve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\models\\datve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\rapchieuphim\\models\\data.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|",
-      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\models\\data.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\rapchieuphim\\areas\\admin\\views\\datve\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\areas\\admin\\views\\datve\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\rapchieuphim\\areas\\admin\\views\\datve\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\areas\\admin\\views\\datve\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\rapchieuphim\\areas\\admin\\views\\datve\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\areas\\admin\\views\\datve\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\rapchieuphim\\areas\\admin\\views\\datve\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\areas\\admin\\views\\datve\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|d:\\rapchieuphim\\rapchieuphim_doan\\doan2fn\\rapchieuphim\\views\\booking\\datve.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D1277349-7C97-4CD9-9BF3-C0ABAD126B07}|RapChieuPhim\\RapChieuPhim.csproj|solutionrelative:rapchieuphim\\views\\booking\\datve.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,15 +30,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DatVe.cs",
+              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Models\\DatVe.cs",
+              "RelativeDocumentMoniker": "RapChieuPhim\\Models\\DatVe.cs",
+              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Models\\DatVe.cs",
+              "RelativeToolTip": "RapChieuPhim\\Models\\DatVe.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-27T08:47:04.86Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
             },
             {
               "$type": "Bookmark",
@@ -78,150 +59,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthorizeAdminAttribute.cs",
-              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Filters\\AuthorizeAdminAttribute.cs",
-              "RelativeDocumentMoniker": "RapChieuPhim\\Filters\\AuthorizeAdminAttribute.cs",
-              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Filters\\AuthorizeAdminAttribute.cs",
-              "RelativeToolTip": "RapChieuPhim\\Filters\\AuthorizeAdminAttribute.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAkwBwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T03:31:17.471Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TrangchuController.cs",
-              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Controllers\\TrangchuController.cs",
-              "RelativeDocumentMoniker": "RapChieuPhim\\Areas\\Admin\\Controllers\\TrangchuController.cs",
-              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Controllers\\TrangchuController.cs",
-              "RelativeToolTip": "RapChieuPhim\\Areas\\Admin\\Controllers\\TrangchuController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T03:22:47.969Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Views\\Trangchu\\Index.cshtml",
-              "RelativeDocumentMoniker": "RapChieuPhim\\Areas\\Admin\\Views\\Trangchu\\Index.cshtml",
-              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Views\\Trangchu\\Index.cshtml",
-              "RelativeToolTip": "RapChieuPhim\\Areas\\Admin\\Views\\Trangchu\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-19T03:22:44.234Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LoginController.cs",
-              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Controllers\\LoginController.cs",
-              "RelativeDocumentMoniker": "RapChieuPhim\\Controllers\\LoginController.cs",
-              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Controllers\\LoginController.cs",
-              "RelativeToolTip": "RapChieuPhim\\Controllers\\LoginController.cs",
-              "ViewState": "AgIAAMABAAAAAAAAAAAcwOUBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T03:22:31.1Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Thanhtoan.cshtml",
-              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Views\\Booking\\Thanhtoan.cshtml",
-              "RelativeDocumentMoniker": "RapChieuPhim\\Views\\Booking\\Thanhtoan.cshtml",
-              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Views\\Booking\\Thanhtoan.cshtml",
-              "RelativeToolTip": "RapChieuPhim\\Views\\Booking\\Thanhtoan.cshtml",
-              "ViewState": "AgIAAKMAAAAAAAAAAAAAALoAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-12T08:52:49.658Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Delete.cshtml",
-              "RelativeDocumentMoniker": "RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Delete.cshtml",
-              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Delete.cshtml",
-              "RelativeToolTip": "RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Delete.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-12T08:43:12.772Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Details.cshtml",
-              "RelativeDocumentMoniker": "RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Details.cshtml",
-              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Details.cshtml",
-              "RelativeToolTip": "RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Details.cshtml",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAAC0AAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-12T08:42:59.139Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Edit.cshtml",
-              "RelativeDocumentMoniker": "RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Edit.cshtml",
-              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Edit.cshtml",
-              "RelativeToolTip": "RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Edit.cshtml",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAADMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-12T08:42:21.84Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Index.cshtml",
-              "RelativeDocumentMoniker": "RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Index.cshtml",
-              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Index.cshtml",
-              "RelativeToolTip": "RapChieuPhim\\Areas\\Admin\\Views\\DatVe\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-12T08:42:22.406Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DatVeController.cs",
-              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Controllers\\DatVeController.cs",
-              "RelativeDocumentMoniker": "RapChieuPhim\\Areas\\Admin\\Controllers\\DatVeController.cs",
-              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Areas\\Admin\\Controllers\\DatVeController.cs",
-              "RelativeToolTip": "RapChieuPhim\\Areas\\Admin\\Controllers\\DatVeController.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAIwDoAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T08:39:34.086Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Data.dbml",
-              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Models\\Data.dbml",
-              "RelativeDocumentMoniker": "RapChieuPhim\\Models\\Data.dbml",
-              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Models\\Data.dbml",
-              "RelativeToolTip": "RapChieuPhim\\Models\\Data.dbml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001722|",
-              "WhenOpened": "2024-12-12T08:38:51.616Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "BookingController.cs",
               "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Controllers\\BookingController.cs",
               "RelativeDocumentMoniker": "RapChieuPhim\\Controllers\\BookingController.cs",
               "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Controllers\\BookingController.cs",
               "RelativeToolTip": "RapChieuPhim\\Controllers\\BookingController.cs",
-              "ViewState": "AgIAADoBAAAAAAAAAAAmwEoBAABMAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAHEBAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T07:03:10.26Z",
+              "WhenOpened": "2024-12-27T08:05:05.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BookingApiController.cs",
+              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Controllers\\BookingApiController.cs",
+              "RelativeDocumentMoniker": "RapChieuPhim\\Controllers\\BookingApiController.cs",
+              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Controllers\\BookingApiController.cs",
+              "RelativeToolTip": "RapChieuPhim\\Controllers\\BookingApiController.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAgwEQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-27T07:43:04.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Datghe.cshtml",
+              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Views\\Booking\\Datghe.cshtml",
+              "RelativeDocumentMoniker": "RapChieuPhim\\Views\\Booking\\Datghe.cshtml",
+              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Views\\Booking\\Datghe.cshtml",
+              "RelativeToolTip": "RapChieuPhim\\Views\\Booking\\Datghe.cshtml",
+              "ViewState": "AgIAAAsBAAAAAAAAAAAwwCUBAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-27T07:24:57.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Datve.cshtml",
+              "DocumentMoniker": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Views\\Booking\\Datve.cshtml",
+              "RelativeDocumentMoniker": "RapChieuPhim\\Views\\Booking\\Datve.cshtml",
+              "ToolTip": "D:\\RapChieuPhim\\RapChieuPhim_DoAn\\DoAn2Fn\\RapChieuPhim\\Views\\Booking\\Datve.cshtml",
+              "RelativeToolTip": "RapChieuPhim\\Views\\Booking\\Datve.cshtml",
+              "ViewState": "AgIAACcAAAAAAAAAAAAowDwAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-27T07:24:42.781Z",
               "EditorCaption": ""
             }
           ]

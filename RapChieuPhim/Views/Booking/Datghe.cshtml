@@ -284,7 +284,7 @@
                 });
             });
             // Khi người dùng nhấn nút xác nhận
-            confirmButton.addEventListener('click', () => {
+            confirmButton.addEventListener('click', () => { 
                 const selectedSeats = document.querySelectorAll('.seat.selected');
                 const seatNumbers = Array.from(selectedSeats).map(seat => seat.getAttribute('data-seat'));
                 selectedSeatsInput.value = seatNumbers.join(',');

@@ -3,7 +3,6 @@
     ViewBag.Title = "Home Page";
 }
 <style>
-    <style >
     /* Cấu trúc chung */
     .footer {
         background-color: #333;
@@ -11,77 +10,77 @@
         padding: 40px 0;
     }
 
-    .footer .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-    }
-
-    .footer .footer-col {
-        flex: 1 1 calc(25% - 20px); /* Chia 4 cột */
-        margin: 10px;
-        text-align: left;
-    }
-
-        .footer .footer-col h4 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            position: relative;
-            color: #ff5722;
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
 
-            .footer .footer-col h4:after {
-                content: "";
-                position: absolute;
-                left: 0;
-                bottom: -10px;
-                width: 50px;
-                height: 2px;
-                background-color: #ff5722;
-            }
-
-        .footer .footer-col ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .footer .footer-col {
+            flex: 1 1 calc(25% - 20px); /* Chia 4 cột */
+            margin: 10px;
+            text-align: left;
         }
 
-            .footer .footer-col ul li {
-                margin-bottom: 10px;
-            }
-
-                .footer .footer-col ul li a {
-                    color: #ddd;
-                    text-decoration: none;
-                    transition: color 0.3s ease;
-                }
-
-                    .footer .footer-col ul li a:hover {
-                        color: #ff5722;
-                    }
-
-    /* Các liên kết mạng xã hội */
-    .footer .social-links {
-        display: flex;
-        justify-content: flex-start;
-        margin-top: 20px;
-    }
-
-        .footer .social-links a {
-            color: #ddd;
-            margin-right: 15px;
-            font-size: 20px;
-            transition: color 0.3s ease;
-        }
-
-            .footer .social-links a:hover {
+            .footer .footer-col h4 {
+                font-size: 20px;
+                margin-bottom: 20px;
+                font-weight: bold;
+                text-transform: uppercase;
+                position: relative;
                 color: #ff5722;
             }
+
+                .footer .footer-col h4:after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: -10px;
+                    width: 50px;
+                    height: 2px;
+                    background-color: #ff5722;
+                }
+
+            .footer .footer-col ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+                .footer .footer-col ul li {
+                    margin-bottom: 10px;
+                }
+
+                    .footer .footer-col ul li a {
+                        color: #ddd;
+                        text-decoration: none;
+                        transition: color 0.3s ease;
+                    }
+
+                        .footer .footer-col ul li a:hover {
+                            color: #ff5722;
+                        }
+
+        /* Các liên kết mạng xã hội */
+        .footer .social-links {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 20px;
+        }
+
+            .footer .social-links a {
+                color: #ddd;
+                margin-right: 15px;
+                font-size: 20px;
+                transition: color 0.3s ease;
+            }
+
+                .footer .social-links a:hover {
+                    color: #ff5722;
+                }
 
     /* Logo và dòng bản quyền */
     #footer {
@@ -109,17 +108,17 @@
     }
 
     /* Container bông tuyết */
-#snowflakeContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Không cho chuột tương tác */
-    z-index: 9999; /* Luôn nằm trên các nội dung khác */
-}
+    #snowflakeContainer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Không cho chuột tương tác */
+        z-index: 9999; /* Luôn nằm trên các nội dung khác */
+    }
 
-/* CSS cho từng bông tuyết */
+    /* CSS cho từng bông tuyết */
     .snowflake {
         position: absolute;
         color: rgba(100, 100, 100, 0.8); /* Màu bông tuyết xám nhạt */
@@ -127,17 +126,19 @@
         animation: fall 10s linear infinite, sway 3s ease-in-out infinite;
     }
 
-/* Hiệu ứng rơi xuống */
-@@keyframes fall {
-    0% {
-        transform: translateY(-10vh); /* Bắt đầu từ trên màn hình */
-        opacity: 1;
+    /* Hiệu ứng rơi xuống */
+    @@keyframes fall {
+        0% {
+            transform: translateY(-10vh); /* Bắt đầu từ trên màn hình */
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateY(100vh); /* Kết thúc ở dưới màn hình */
+            opacity: 0.5; /* Mờ dần khi rơi */
+        }
     }
-    100% {
-        transform: translateY(100vh); /* Kết thúc ở dưới màn hình */
-        opacity: 0.5; /* Mờ dần khi rơi */
-    }
-}
+ 
     /* Overlay mờ nền */
     .popup-overlay {
         position: fixed;
@@ -222,9 +223,6 @@
             transform: scale(1.1); /* Phóng to nhẹ khi hover */
             background-color: #f7dc6f; /* Màu nền đậm hơn khi hover */
         }
-
-
-
 </style>
 <div id="popup" class="popup-overlay">
     <div class="popup-content">
