@@ -17,77 +17,77 @@
         padding: 40px 0;
     }
 
-    .footer .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-    }
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
 
-    .footer .footer-col {
-        flex: 1 1 calc(25% - 20px); /* Chia 4 cột */
-        margin: 10px;
-        text-align: left;
-    }
+        .footer .footer-col {
+            flex: 1 1 calc(25% - 20px); /* Chia 4 cột */
+            margin: 10px;
+            text-align: left;
+        }
 
-    .footer .footer-col h4 {
-        font-size: 20px;
-        margin-bottom: 20px;
-        font-weight: bold;
-        text-transform: uppercase;
-        position: relative;
-        color: #ff5722;
-    }
+            .footer .footer-col h4 {
+                font-size: 20px;
+                margin-bottom: 20px;
+                font-weight: bold;
+                text-transform: uppercase;
+                position: relative;
+                color: #ff5722;
+            }
 
-    .footer .footer-col h4:after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -10px;
-        width: 50px;
-        height: 2px;
-        background-color: #ff5722;
-    }
+                .footer .footer-col h4:after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: -10px;
+                    width: 50px;
+                    height: 2px;
+                    background-color: #ff5722;
+                }
 
-    .footer .footer-col ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+            .footer .footer-col ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
 
-    .footer .footer-col ul li {
-        margin-bottom: 10px;
-    }
+                .footer .footer-col ul li {
+                    margin-bottom: 10px;
+                }
 
-    .footer .footer-col ul li a {
-        color: #ddd;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
+                    .footer .footer-col ul li a {
+                        color: #ddd;
+                        text-decoration: none;
+                        transition: color 0.3s ease;
+                    }
 
-    .footer .footer-col ul li a:hover {
-        color: #ff5722;
-    }
+                        .footer .footer-col ul li a:hover {
+                            color: #ff5722;
+                        }
 
-    /* Các liên kết mạng xã hội */
-    .footer .social-links {
-        display: flex;
-        justify-content: flex-start;
-        margin-top: 20px;
-    }
+        /* Các liên kết mạng xã hội */
+        .footer .social-links {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 20px;
+        }
 
-    .footer .social-links a {
-        color: #ddd;
-        margin-right: 15px;
-        font-size: 20px;
-        transition: color 0.3s ease;
-    }
+            .footer .social-links a {
+                color: #ddd;
+                margin-right: 15px;
+                font-size: 20px;
+                transition: color 0.3s ease;
+            }
 
-    .footer .social-links a:hover {
-        color: #ff5722;
-    }
+                .footer .social-links a:hover {
+                    color: #ff5722;
+                }
 
     /* Logo và dòng bản quyền */
     #footer {
@@ -98,142 +98,152 @@
         border-top: 1px solid #444;
     }
 
-    #footer img {
-        max-width: 100px;
-        margin-bottom: 10px;
-    }
+        #footer img {
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
 
-    #footer span {
-        display: block;
-        font-size: 14px;
-        color: #aaa;
-        margin-top: 5px;
-    }
+        #footer span {
+            display: block;
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 5px;
+        }
 
     /* Responsive */
-    media (max-width: 768px) {
-        .footer .footer-col {
-            flex: 1 1 100%; /* Mỗi cột chiếm 100% chiều rộng */
-            text-align: center;
-        }
+    @@media (max-width: 768px) {
+        .footer .footer-col
 
-        .footer .social-links {
-            justify-content: center;
-        }
+    {
+        flex: 1 1 100%; /* Mỗi cột chiếm 100% chiều rộng */
+        text-align: center;
+    }
+
+    .footer .social-links {
+        justify-content: center;
+    }
+
     }
 
     /* Styling for login/logout section */
-#login-icon {
-    position: relative;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
+    #login-icon {
+        position: relative;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
 
-#login-icon a {
-    text-decoration: none;
-    color: #333;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    border-radius: 5px;
-    background-color: transparent;
-    transition: all 0.3s ease;
-}
+        #login-icon a {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
 
-#login-icon a:hover {
-    color: #fff;
-    background-color: #ff5722;
-    box-shadow: 0px 4px 8px rgba(255, 87, 34, 0.2);
-}
+            #login-icon a:hover {
+                color: #fff;
+                background-color: #ff5722;
+                box-shadow: 0px 4px 8px rgba(255, 87, 34, 0.2);
+            }
 
-/* Dropdown menu styling */
-#login-icon div {
-    position: relative;
-}
+        /* Dropdown menu styling */
+        #login-icon div {
+            position: relative;
+        }
 
-#login-icon .dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    width: 180px;
-    z-index: 10;
-    animation: fadeIn 0.3s ease;
-}
+        #login-icon .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            width: 180px;
+            z-index: 10;
+            animation: fadeIn 0.3s ease;
+        }
 
-#login-icon:hover .dropdown {
-    display: block;
-}
+        #login-icon:hover .dropdown {
+            display: block;
+        }
 
-#login-icon .dropdown a {
-    display: block;
-    padding: 12px 15px;
-    color: #333;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 14px;
-}
+        #login-icon .dropdown a {
+            display: block;
+            padding: 12px 15px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
 
-#login-icon .dropdown a:hover {
-    background-color: #ff5722;
-    color: #fff;
-}
+            #login-icon .dropdown a:hover {
+                background-color: #ff5722;
+                color: #fff;
+            }
 
-#login-icon .dropdown hr {
-    margin: 0;
-    border: none;
-    border-top: 1px solid #ddd;
-}
+        #login-icon .dropdown hr {
+            margin: 0;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
 
-/* Avatar-style icon for logged-in state */
-#login-icon span {
-    font-size: 16px;
-    color: #333;
-    font-weight: bold;
-}
+        /* Avatar-style icon for logged-in state */
+        #login-icon span {
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+        }
 
-#login-icon a span {
-    font-size: 16px;
-    font-weight: bold;
-}
+        #login-icon a span {
+            font-size: 16px;
+            font-weight: bold;
+        }
 
-/* Admin-specific styling */
-#login-icon a.admin {
-    color: #4CAF50;
-    font-size: 14px;
-    font-weight: bold;
-}
+        /* Admin-specific styling */
+        #login-icon a.admin {
+            color: #4CAF50;
+            font-size: 14px;
+            font-weight: bold;
+        }
 
-/* Dropdown Animation */
-keyframes fadeIn {
-    from {
+    /* Dropdown Animation */
+    @@keyframes fadeIn {
+        from
+
+    {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
-}
 
-/* Responsive for small screens */
-media (max-width: 768px) {
-    #login-icon {
+    }
+
+    /* Responsive for small screens */
+    @@media (max-width: 768px) {
+        #login-icon
+
+    {
         text-align: center;
     }
+
     #login-icon .dropdown {
         width: 100%;
         left: 0;
         right: 0;
     }
-}
+    }
 </style>
 <body>
     <header>

@@ -13,6 +13,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.loai_ghe_id)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ten_loai_ghe)
         </th>
         <th>
@@ -24,15 +27,18 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.loai_ghe_id)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.ten_loai_ghe)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.gia_ve)
         </td>
         <td>
-            @Html.ActionLink("Sửa", "Edit", new { id=item.loai_ghe_id }) |
-            @Html.ActionLink("Chi tiết", "Details", new { id=item.loai_ghe_id }) |
-            @Html.ActionLink("Xóa", "Delete", new { id=item.loai_ghe_id })
+            @Html.ActionLink("Sửa", "Edit", new { id = item.loai_ghe_id }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id = item.loai_ghe_id }) |
+            @Html.ActionLink("Xóa", "Delete", new { id = item.loai_ghe_id })
         </td>
     </tr>
 }

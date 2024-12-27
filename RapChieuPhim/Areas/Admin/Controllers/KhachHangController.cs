@@ -122,7 +122,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 return View();
             }
 
-
         }
     }
 }

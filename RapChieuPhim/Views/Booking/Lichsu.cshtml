@@ -95,7 +95,7 @@
                             <td>@item.Suat_chieu.Phim.ten_phim</td>
                             <td>Chiếu từ: @item.Suat_chieu.gio_bat_dau | @item.Suat_chieu.gio_ket_thuc</td>
                             <td>@(item.tong_tien.HasValue ? item.tong_tien.Value.ToString("N0") : "0") VND</td>
-                            
+
                             <td><a class="details-button" href="@Url.Action("Chitietdatve", "Booking", new { datVeId = item.dat_ve_id })">Chi Tiết</a></td>
                         </tr>
                     }

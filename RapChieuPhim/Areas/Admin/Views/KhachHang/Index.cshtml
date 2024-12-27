@@ -13,6 +13,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.nguoi_dung_id)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ten_dang_nhap)
         </th>
         <th>
@@ -30,7 +33,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ngay_tao)
         </th>
-       
+
         <th>
             @Html.DisplayNameFor(model => model.role)
         </th>
@@ -39,6 +42,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nguoi_dung_id)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.ten_dang_nhap)
         </td>
@@ -57,14 +63,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.ngay_tao)
         </td>
-        
+
         <td>
             @Html.DisplayFor(modelItem => item.role)
         </td>
         <td>
-            @Html.ActionLink("Sửa", "Edit", new { id=item.nguoi_dung_id }) |
-            @Html.ActionLink("Chi tiết", "Details", new { id=item.nguoi_dung_id }) |
-            @Html.ActionLink("Xóa", "Delete", new { id=item.nguoi_dung_id })
+            @Html.ActionLink("Sửa", "Edit", new { id = item.nguoi_dung_id }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id = item.nguoi_dung_id }) |
+            @Html.ActionLink("Xóa", "Delete", new { id = item.nguoi_dung_id })
         </td>
     </tr>
 }

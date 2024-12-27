@@ -126,12 +126,29 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
             <input type="submit" value="Xóa" class="btn btn-default" /> |
             @Html.ActionLink("Trở về", "Index")
         </div>
+
+        if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                @ViewBag.Success
+            </div>
+        }
+
+        if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.Error
+            </div>
+        }
+
+
     }
 </div>

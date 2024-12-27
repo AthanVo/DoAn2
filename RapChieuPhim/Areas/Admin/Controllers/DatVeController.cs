@@ -79,12 +79,34 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var datVe = data.Dat_ves.SingleOrDefault(d => d.dat_ve_id == id);
-            if (datVe != null)
+            if (datVe == null)
             {
-                data.Dat_ves.DeleteOnSubmit(datVe);
-                data.SubmitChanges();
+                ViewBag.Error = "Không tìm thấy thông tin đặt vé!";
+                return View("Delete", datVe); // Giữ nguyên trang "Delete"
             }
-            return RedirectToAction("Index");
+
+            try
+            {
+                // Xóa bản ghi đặt vé
+                data.Dat_ves.DeleteOnSubmit(datVe);
+
+                // Lưu thay đổi vào cơ sở dữ liệu
+                data.SubmitChanges();
+
+                // Thông báo thành công
+                ViewBag.Success = "Xóa đặt vé thành công!";
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi (nếu cần)
+                System.IO.File.AppendAllText(Server.MapPath("~/App_Data/ErrorLog.txt"), ex.ToString());
+
+                // Thông báo lỗi
+                ViewBag.Error = "Bạn phải xóa các ràng buộc trước rồi mới được xóa đặt vé. Vui lòng thử lại.";
+            }
+
+            // Trả về trang "Delete" với thông báo lỗi hoặc thành công
+            return View("Delete", datVe);
         }
     }
 }

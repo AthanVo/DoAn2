@@ -191,18 +191,35 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return View(phim); // Truyền đối tượng phim vào View xác nhận xóa
         }
 
-        // Xóa phim (POST)
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             var phim = data.Phims.FirstOrDefault(p => p.phim_id == id);
-            if (phim != null)
+            if (phim == null)
             {
-                data.Phims.DeleteOnSubmit(phim);
-                data.SubmitChanges(); // Xóa phim khỏi cơ sở dữ liệu
+                return HttpNotFound(); // Nếu phim không tồn tại, trả về 404
             }
-            return RedirectToAction("Index");
+
+            try
+            {
+                // Xóa phim khỏi cơ sở dữ liệu
+                data.Phims.DeleteOnSubmit(phim);
+                data.SubmitChanges();
+                ViewBag.Success = "Xóa phim thành công!";
+                return RedirectToAction("Index"); // Chuyển về trang danh sách sau khi xóa thành công
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi, ví dụ: Lỗi ràng buộc khóa ngoại
+                ViewBag.Error = "Không thể xóa phim vì có dữ liệu liên quan. Hãy xóa các dữ liệu liên quan trước.";
+                // Ghi log lỗi nếu cần
+                System.IO.File.AppendAllText(Server.MapPath("~/App_Data/ErrorLog.txt"), ex.ToString());
+                return View(phim); // Trả lại View "Delete" cùng với đối tượng phim và thông báo lỗi
+            }
         }
+
     }
+
 }
+
