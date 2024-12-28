@@ -7,10 +7,10 @@
 
 <h2>Thêm phim</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Phim", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
     <h4>Phim</h4>
     <hr />
@@ -50,9 +50,19 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ngay_khoi_chieu, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input type="date" name="ngay_khoi_chieu" class="form-control"
+            <input type="date" name="ngay_khoi_chieu" id="ngay_khoi_chieu"
+                   class="form-control"
                    value="@(Model.ngay_khoi_chieu != null ? Model.ngay_khoi_chieu.Value.ToString("yyyy-MM-dd") : "")" />
             @Html.ValidationMessageFor(model => model.ngay_khoi_chieu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.diem_danh_gia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.diem_danh_gia, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.diem_danh_gia, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -80,28 +90,48 @@
         </div>
     </div>
 
-    <!-- Ảnh -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.luot_vote, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.luot_vote, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.luot_vote, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
     <div class="form-group">
         @Html.LabelFor(model => model.anh, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
+            @if (!string.IsNullOrEmpty(Model.anh))
+            {
+                <img src="@Url.Content(Model.anh)" alt="Ảnh hiện tại" style="max-width: 150px; max-height: 150px; margin-bottom: 10px;" />
+            }
             <input type="file" name="anh" id="anh" class="form-control" />
             @Html.ValidationMessageFor(model => model.anh, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <!-- Video -->
     <div class="form-group">
         @Html.LabelFor(model => model.video, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
+            @if (!string.IsNullOrEmpty(Model.video))
+            {
+                <video width="320" height="240" controls style="margin-bottom: 10px;">
+                    <source src="@Url.Content(Model.video)" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ phát video.
+                </video>
+            }
             <input type="file" name="video" id="video" class="form-control" />
             @Html.ValidationMessageFor(model => model.video, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <!-- Ảnh video -->
     <div class="form-group">
-        @Html.LabelFor(model => model.anh_video, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.anh, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
+            @if (!string.IsNullOrEmpty(Model.anh_video))
+            {
+                <img src="@Url.Content(Model.anh_video)" alt="Ảnh hiện tại" style="max-width: 150px; max-height: 150px; margin-bottom: 10px;" />
+            }
             <input type="file" name="anh_video" id="anh_video" class="form-control" />
             @Html.ValidationMessageFor(model => model.anh_video, "", new { @class = "text-danger" })
         </div>
@@ -117,11 +147,12 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Thêm" class="btn btn-default" />
+            <input type="submit" value="Thêm" class="btn btn-primary" />
         </div>
     </div>
 </div>
 }
+
 
 <div>
     @Html.ActionLink("Trở về", "Index")

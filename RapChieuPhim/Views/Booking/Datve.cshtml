@@ -54,15 +54,7 @@
             });
     }
 
-    // Polling: Gọi API mỗi 5 giây để cập nhật số ghế cho tất cả các suất chiếu
-    setInterval(function () {
-        // Lấy tất cả các suatChieuId từ các phần tử trên trang
-        const suatChieuElements = document.querySelectorAll('[id^="remainingSeats_"]');
-        suatChieuElements.forEach(function (element) {
-            const suatChieuId = element.id.split('_')[1]; // Lấy suatChieuId từ id phần tử
-            fetchSeats(suatChieuId); // Gọi hàm fetchSeats với suatChieuId tương ứng
-        });
-    }, 5000); // 5000 milliseconds = 5 giây
+    
 
 
 </script>

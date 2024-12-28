@@ -48,7 +48,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 if (anh != null && anh.ContentLength > 0)
                 {
                     var anhFileName = System.IO.Path.GetFileName(anh.FileName);
-                    var anhPath = System.IO.Path.Combine(Server.MapPath("~/UploadedFiles/Images/"), anhFileName);
+                    var anhPath = System.IO.Path.Combine(Server.MapPath("/UploadedFiles/Images/"), anhFileName);
                     anh.SaveAs(anhPath);
                     phim.anh = "/UploadedFiles/Images/" + anhFileName; // Lưu đường dẫn ảnh
                 }
@@ -56,7 +56,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 if (video != null && video.ContentLength > 0)
                 {
                     var videoFileName = System.IO.Path.GetFileName(video.FileName);
-                    var videoPath = System.IO.Path.Combine(Server.MapPath("~/UploadedFiles/Videos/"), videoFileName);
+                    var videoPath = System.IO.Path.Combine(Server.MapPath("/UploadedFiles/Videos/"), videoFileName);
                     video.SaveAs(videoPath);
                     phim.video = "/UploadedFiles/Videos/" + videoFileName; // Lưu đường dẫn video
                 }
@@ -64,7 +64,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 if (anh_video != null && anh_video.ContentLength > 0)
                 {
                     var anhVideoFileName = System.IO.Path.GetFileName(anh_video.FileName);
-                    var anhVideoPath = System.IO.Path.Combine(Server.MapPath("~/UploadedFiles/ImageVideos/"), anhVideoFileName);
+                    var anhVideoPath = System.IO.Path.Combine(Server.MapPath("/UploadedFiles/ImageVideos/"), anhVideoFileName);
                     anh_video.SaveAs(anhVideoPath);
                     phim.anh_video = "/UploadedFiles/ImageVideos/" + anhVideoFileName; // Lưu đường dẫn ảnh video
                 }
@@ -115,7 +115,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                     if (anh != null && anh.ContentLength > 0)
                     {
                         var fileName = System.IO.Path.GetFileName(anh.FileName);
-                        var path = System.IO.Path.Combine(Server.MapPath("~/UploadedFiles/Images/"), fileName);
+                        var path = System.IO.Path.Combine(Server.MapPath("/UploadedFiles/Images/"), fileName);
 
                         // Xóa file ảnh cũ nếu tồn tại
                         if (!string.IsNullOrEmpty(existingPhim.anh))
@@ -135,7 +135,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                     if (video != null && video.ContentLength > 0)
                     {
                         var videoFileName = System.IO.Path.GetFileName(video.FileName);
-                        var videoPath = System.IO.Path.Combine(Server.MapPath("~/UploadedFiles/Videos/"), videoFileName);
+                        var videoPath = System.IO.Path.Combine(Server.MapPath("/UploadedFiles/Videos/"), videoFileName);
 
                         // Xóa file video cũ nếu tồn tại
                         if (!string.IsNullOrEmpty(existingPhim.video))
@@ -155,7 +155,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                     if (anh_video != null && anh_video.ContentLength > 0)
                     {
                         var anhVideoFileName = System.IO.Path.GetFileName(anh_video.FileName);
-                        var anhVideoPath = System.IO.Path.Combine(Server.MapPath("~/UploadedFiles/ImageVideos/"), anhVideoFileName);
+                        var anhVideoPath = System.IO.Path.Combine(Server.MapPath("/UploadedFiles/ImageVideos/"), anhVideoFileName);
 
                         // Xóa file ảnh video cũ nếu tồn tại
                         if (!string.IsNullOrEmpty(existingPhim.anh_video))
