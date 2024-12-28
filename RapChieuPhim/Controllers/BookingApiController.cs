@@ -79,34 +79,7 @@ public class BookingApiController : ApiController
         return Ok("Đặt vé thành công.");
     }
 
-    // API giải phóng ghế (khi hết thời gian giữ)
-    [HttpPost]
-    [Route("ReleaseSeats")]
-    public IHttpActionResult ReleaseSeats([FromBody] ReleaseRequest request)
-    {
-        if (request.SeatIds == null || !request.SeatIds.Any())
-        {
-            return BadRequest("Không có ghế nào được giải phóng.");
-        }
-
-        var seatsToRelease = _context.Dat_chos
-            .Where(dc => request.SeatIds.Contains(dc.ghe_id) && dc.suat_chieu_id == request.SuatChieuId && dc.da_dat == false)
-            .ToList();
-
-        if (!seatsToRelease.Any())
-        {
-            return BadRequest("Không tìm thấy ghế nào để giải phóng.");
-        }
-
-        foreach (var seat in seatsToRelease)
-        {
-            _context.Dat_chos.DeleteOnSubmit(seat);
-        }
-
-        _context.SubmitChanges();
-
-        return Ok("Giải phóng ghế thành công.");
-    }
+    
 }
 
 // Lớp nhận dữ liệu yêu cầu đặt ghế
@@ -116,9 +89,3 @@ public class BookingRequest
     public List<int> SeatIds { get; set; }
 }
 
-// Lớp nhận dữ liệu yêu cầu giải phóng ghế
-public class ReleaseRequest
-{
-    public int SuatChieuId { get; set; }
-    public List<int> SeatIds { get; set; }
-}
